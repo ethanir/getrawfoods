@@ -23,7 +23,7 @@ from app.models.farm import (  # noqa: E402
 
 
 SEED_PATH_CANDIDATES = [
-    Path("/app/seed_data.json"),  # docker-mounted location
+    Path("/app/docs/seed_data.json"),  # docker-mounted location
     Path(__file__).resolve().parent.parent / "seed_data.json",
     Path(__file__).resolve().parent.parent.parent / "docs" / "seed_data.json",
 ]

@@ -18,3 +18,4 @@ __all__ = [
     "FarmProduct",
     "FarmTip",
 ]
+from app.models.user import User  # noqa: F401

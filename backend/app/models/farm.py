@@ -105,7 +105,7 @@ class FarmProduct(Base):
     notes: Mapped[str | None] = mapped_column(Text, nullable=True)
     must_specify: Mapped[str | None] = mapped_column(Text, nullable=True)
     price_per_unit: Mapped[str | None] = mapped_column(String(50), nullable=True)
-    unit: Mapped[str | None] = mapped_column(String(20), nullable=True)
+    unit: Mapped[str | None] = mapped_column(String(60), nullable=True)
 
     farm: Mapped[Farm] = relationship(back_populates="products")
 

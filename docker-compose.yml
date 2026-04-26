@@ -28,7 +28,7 @@ services:
       - "8000:8000"
     volumes:
       - ./backend:/app
-      - ./docs/seed_data.json:/app/seed_data.json:ro
+      - ./docs:/app/docs:ro
     depends_on:
       db:
         condition: service_healthy

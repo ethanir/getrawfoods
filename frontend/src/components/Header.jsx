@@ -10,7 +10,7 @@ export default function Header() {
           <Link to="/about">About</Link>
         </nav>
         <span className="site-header__tagline">
-          Sourcing knowledge for the primal/raw food diet
+          Sourcing knowledge for raw carnivore + ancestral diets
         </span>
       </div>
     </header>

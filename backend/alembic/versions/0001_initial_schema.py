@@ -80,7 +80,6 @@ def upgrade() -> None:
     op.create_index("idx_farms_state", "farms", ["state"])
     op.create_index("idx_farms_verification", "farms", ["verification_level"])
     op.create_index("idx_farms_status", "farms", ["status"])
-    op.create_index("idx_farms_location", "farms", ["location"], postgresql_using="gist")
     op.create_index("idx_farms_name_trgm", "farms", ["name"],
                     postgresql_using="gin", postgresql_ops={"name": "gin_trgm_ops"})
 
@@ -95,7 +94,7 @@ def upgrade() -> None:
         sa.Column("notes", sa.Text(), nullable=True),
         sa.Column("must_specify", sa.Text(), nullable=True),
         sa.Column("price_per_unit", sa.String(50), nullable=True),
-        sa.Column("unit", sa.String(20), nullable=True),
+        sa.Column("unit", sa.String(60), nullable=True),
     )
     op.create_index("idx_farm_products_farm", "farm_products", ["farm_id"])
     op.create_index("idx_farm_products_type", "farm_products", ["product_type"])

@@ -46,7 +46,7 @@ export default function Home() {
         <h1>Farm directory</h1>
         <p style={{ color: 'var(--color-muted)', maxWidth: '60ch' }}>
           Verified suppliers of raw dairy, grass-fed organs, wild seafood, and
-          other primal-diet staples. Aajonus-verified entries are sourced from
+          other raw food staples. Aajonus-verified entries are sourced from
           his published lists and books; dev-recommended are personally vetted.
         </p>
       </section>
