@@ -5,7 +5,7 @@ export default function About() {
 
       <p style={{ fontFamily: 'IBM Plex Serif, Georgia, serif', fontSize: '1.05rem' }}>
         GetRawFoods is a community-built sourcing knowledge base for the
-        primal/raw food diet, oriented around the work of{' '}
+        raw food and ancestral diets, oriented around the work of{' '}
         <a href="https://aajonus.net" target="_blank" rel="noreferrer">
           Aajonus Vonderplanitz
         </a>

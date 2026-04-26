@@ -1,8 +1,8 @@
 # GetRawFoods
 
-A community-driven sourcing knowledge base for the primal/raw food diet, oriented around the work of Aajonus Vonderplanitz.
+A community-driven sourcing directory for raw meat, organs, dairy, and wild seafood. Built for the raw carnivore, primal, and ancestral health communities.
 
-The web is full of scattered information about where to source raw dairy, grass-fed organs, wild seafood, and other primal-diet staples — Reddit threads, Telegram groups, decade-old PDFs, half-broken Aajonus directory pages. GetRawFoods consolidates that knowledge: a searchable directory of farms and online suppliers, with sourcing tips, citations to primary sources, and a forum for community contributions.
+The web is full of scattered information about where to source raw dairy, grass-fed organs, wild seafood, and other raw food staples — Reddit threads, Telegram groups, decade-old PDFs, half-broken Aajonus directory pages. GetRawFoods consolidates that knowledge: a searchable directory of farms and online suppliers, with sourcing tips, citations to primary sources, and a forum for community contributions.
 
 ## What this is
 
