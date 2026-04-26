@@ -1,0 +1,679 @@
+{
+  "_meta": {
+    "version": "0.1",
+    "description": "Seed data extracted from primary research. Each entry below maps to a row in the production database. Edit, add, or remove entries before import.",
+    "categories_reference": {
+      "verification_levels": [
+        "aajonus_verified",
+        "dev_recommended",
+        "community_verified",
+        "unverified"
+      ],
+      "fulfillment_methods": [
+        "in_person",
+        "herd_share",
+        "ships_nationwide",
+        "ships_regional",
+        "local_delivery"
+      ],
+      "product_types": [
+        "raw_cow_milk",
+        "raw_goat_milk",
+        "raw_sheep_milk",
+        "raw_water_buffalo_milk",
+        "raw_camel_milk",
+        "raw_cream",
+        "raw_butter",
+        "raw_cheese",
+        "raw_cottage_cheese",
+        "raw_kefir",
+        "raw_colostrum",
+        "ground_beef",
+        "beef_cuts",
+        "beef_organs",
+        "lamb",
+        "bison",
+        "pork",
+        "poultry",
+        "raw_eggs_fertile",
+        "raw_honey",
+        "wild_seafood",
+        "live_oysters",
+        "raw_fish",
+        "bone_marrow",
+        "tallow_suet",
+        "apple_cider_vinegar",
+        "olive_oil",
+        "coconut_cream"
+      ]
+    }
+  },
+
+  "farms": [
+    {
+      "slug": "millers-organic-farm",
+      "name": "Miller's Organic Farm",
+      "alt_names": ["Amos Miller", "Amos Miller Organic Farm"],
+      "description": "Direct Aajonus lineage Amish farm in Pennsylvania. The only farm appearing in every category of Aajonus's official sourcing list. Known for A2/A2 dairy, no-salt cheeses made with homemade rennet to Aajonus's exact specifications, water buffalo and camel dairy, and grass-fed/pastured meats. Operates with a private membership food association model. Has been raided by federal authorities multiple times for selling raw dairy across state lines.",
+      "address": {
+        "street": "648 Mill Creek School Rd",
+        "city": "Bird-in-Hand",
+        "state": "PA",
+        "zip": "17505",
+        "country": "USA"
+      },
+      "contact": {
+        "website": "https://amosmillerorganicfarm.com",
+        "phone": "717-556-0672",
+        "email": "info@amosmillerorganicfarm.com",
+        "support_email": "help@amosmillerorganicfarm.com"
+      },
+      "verification_level": "aajonus_verified",
+      "verification_source": "Listed across every category on aajonus.net official sourcing pages. Aajonus reportedly helped start this farm.",
+      "fulfillment_methods": ["in_person", "ships_nationwide"],
+      "products": [
+        {"type": "raw_butter", "notes": "A2/A2 cow, no-salt option, in glass jar. The flagship product. Specify 'no salt, glass jar' at checkout.", "price_per_unit": "$19.00", "unit": "jar (~12-14oz)"},
+        {"type": "raw_cream", "notes": "A2/A2 heavy cream in glass. Available as pint, quart, or half-gallon. Quart is sweet spot for one person.", "price_per_unit": "$11.50–$33.50", "unit": "pint/quart/half-gallon"},
+        {"type": "raw_cow_milk", "notes": "A2/A2 Jersey/Guernsey cow milk", "unit": "half-gallon"},
+        {"type": "raw_water_buffalo_milk", "notes": "A2/A2 only. Aajonus considered water buffalo dairy 'the most healing.' ~2x fat of cow milk."},
+        {"type": "raw_camel_milk", "notes": "Seasonal availability. Call to confirm."},
+        {"type": "raw_cottage_cheese", "notes": "Sheep A2/A2 NO SALT version explicitly labeled. Buffalo cottage cheese also available — confirm 'no salt' on the specific listing.", "price_per_unit": "$20.00", "unit": "pint"},
+        {"type": "raw_cheese", "notes": "Cheeses made with HOMEMADE rennet to Aajonus's exact instructions — cheddar, colby, swiss, jack, farmer's, Frazer. Only farm doing this. Most are salted; look for explicit 'No Salt' in title."},
+        {"type": "ground_beef", "notes": "Two product lines exist: 'Meats Only' (USDA-inspected, $12-15/lb) and 'Pet Food' line ($8.50/lb) — same farm, same animals, same standards (no vaccines/mRNA, grass-fed, no GMO feed). Pet food labeling is a legal workaround per PA state law. Specify 'single-grind' for raw eating.", "price_per_unit": "$8.50–$15.00", "unit": "lb"},
+        {"type": "beef_cuts", "notes": "Steaks, roasts. Around $15/lb."},
+        {"type": "beef_organs", "notes": "Liver, heart, kidney, brain, sweetbreads. Sell out fast — backorder or call for next slaughter date."},
+        {"type": "bone_marrow", "notes": "Highly recommended by Aajonus. Limited stock."},
+        {"type": "lamb", "notes": "Grass-fed, all cuts."},
+        {"type": "raw_eggs_fertile", "notes": "Pastured, soy-free, unwashed. Stop cooking the whites — Aajonus explicitly addressed this."},
+        {"type": "raw_honey", "notes": "Unheated."},
+        {"type": "apple_cider_vinegar", "notes": "Aged in wood barrels."}
+      ],
+      "tips": [
+        {"type": "checkout_note", "title": "Default checkout note for fresh shipping", "body": "Add to cart comments: 'Hi Amos — Primal Diet member. Please ship all items fresh, no substitutions. 2-Day FedEx with extra ice packs. Thanks & God bless.' Keep it short. Amish farmers appreciate sincerity but not flowery language."},
+        {"type": "shipping", "title": "Order Mon–Wed only", "body": "Amos won't ship late-week to avoid weekend transit. Mon–Wed orders ship same week, Thu–Fri orders may delay. Closed Sundays."},
+        {"type": "shipping", "title": "Always pay for 2-day FedEx Express", "body": "Don't cheap out on shipping. Slower shipping = items spoil or they freeze them to compensate. 2-day Express is non-negotiable for raw dairy/meat."},
+        {"type": "shipping", "title": "Default ship state is frozen — must specify fresh", "body": "Their default for meat is frozen. You MUST add a comment at checkout: 'Ship fresh, never frozen' or you'll get frozen product. Butter and dairy ship refrigerated by default but it's worth saying anyway."},
+        {"type": "phone_script", "title": "Calling Amos directly", "body": "Phone: 717-556-0672. Closed Sundays. Leave voicemail if no answer — they return calls. Good questions to ask: (1) 'What's the difference between your pet food line and meats-only line?' (2) 'When is your next beef slaughter? Can you reserve liver/heart/marrow?' (3) 'Do you have any unlisted no-salt cheese options for primal customers?'"},
+        {"type": "insider", "title": "Pet Food line is the loophole", "body": "VERIFIED via court documents (United States v. Miller's Organic Farm) and Lancaster Patriot newspaper reporting: PA's Retail Food Facility Safety Act only applies to food labeled for human consumption. Amos labels some products 'pet food' to skip USDA inspection requirements. Same animals, same standards, ~50% cheaper. Widely consumed by primal community for years. Federal court itself acknowledged this pathway in the consent decree."},
+        {"type": "insider", "title": "Sign up for stock notifications", "body": "Check the newsletter signup box during account creation — they email when sold-out items (especially organs) come back in stock. Liver goes fastest because primal/carnivore people hoard it."},
+        {"type": "insider", "title": "Best time to check website for restocks", "body": "Wednesday–Friday mornings. Amish work Mon–Sat, fresh stock tends to post mid-week after processing."},
+        {"type": "warning", "title": "Cottage cheese 'no salt' label ambiguity", "body": "Some cottage cheese listings show ingredients as 'milk, culture' (no salt listed) but traditional cottage cheese often has trace salt undisclosed. The Sheep A2/A2 Cottage Cheese explicitly says 'NO SALT' in the product title — that's the unambiguous one. For others, call to confirm."},
+        {"type": "warning", "title": "2016 listeria incident", "body": "Their raw milk caused one documented listeria death in 2016. Operation isn't perfect — cited here for transparency. Most members consider their standards exceptionally high regardless."}
+      ],
+      "citations": [
+        {"source_type": "website", "source_name": "aajonus.net", "source_detail": "Sourcing pages — appears in every category", "quote": "Miller's Organic Farm is listed across dairy, butter, cream, cheese, beef, poultry, organs, eggs, and ACV categories"}
+      ]
+    },
+
+    {
+      "slug": "mark-nolt-farm",
+      "name": "Mark Nolt Farm",
+      "alt_names": ["Nature's Sunlight", "Mark and Maryann Nolt"],
+      "description": "Old-school Amish farm in Newville, PA. No website — phone-only ordering. Aajonus personally praised this farm in his sourcing materials.",
+      "address": {
+        "street": "401 Centerville Road",
+        "city": "Newville",
+        "state": "PA",
+        "zip": "17241",
+        "country": "USA"
+      },
+      "contact": {
+        "phone": "717-776-3417",
+        "website": null
+      },
+      "verification_level": "aajonus_verified",
+      "verification_source": "Listed on aajonus.net for beef, lamb, poultry, eggs, butter, cream, cheese.",
+      "fulfillment_methods": ["in_person", "ships_nationwide"],
+      "products": [
+        {"type": "ground_beef", "notes": "Reportedly $8-11/lb. Aajonus's quote on this farm: 'exceptional quality and reasonable prices.'"},
+        {"type": "lamb"},
+        {"type": "poultry"},
+        {"type": "raw_butter", "notes": "Aajonus described it as 'exceptionally orange and nutrient dense.'"},
+        {"type": "raw_cream"},
+        {"type": "raw_cheese"},
+        {"type": "raw_eggs_fertile", "notes": "Hens fed organic raw grain + grass + skim raw milk."}
+      ],
+      "tips": [
+        {"type": "phone_script", "title": "How to actually order", "body": "No website at all. Call 717-776-3417. Leave voicemail if no answer (Amish, returns calls). Don't call Sundays. Ask: (1) 'Do you ship fresh, never frozen meat to [state]?' (2) 'What's available — beef, lamb, poultry, eggs, organs?' (3) 'No-salt butter and cheese in stock?' (4) 'Shipping cost / minimum order?'"},
+        {"type": "warning", "title": "If shipping is a hassle", "body": "If he doesn't ship to your state or it's a logistical nightmare, fall back to Miller's Organic Farm — same Aajonus tier, has a website, easier ordering."}
+      ],
+      "citations": [
+        {"source_type": "website", "source_name": "aajonus.net", "source_detail": "Multiple category pages", "quote": "Aajonus described Mark Nolt's farm as offering 'exceptional quality and reasonable prices' and his butter as 'exceptionally orange and nutrient dense.'"}
+      ]
+    },
+
+    {
+      "slug": "meadow-ridge-farm",
+      "name": "Meadow Ridge Farm",
+      "alt_names": ["Mervin Esh"],
+      "description": "Specialty exotic dairy farm — one of very few US sources for camel dairy, sheep dairy, and (per Aajonus's old listings) some wild seafood. Located in Pennsylvania.",
+      "address": {
+        "city": "Pennsylvania",
+        "state": "PA",
+        "country": "USA"
+      },
+      "contact": {
+        "phone": "717-530-5999",
+        "website": "https://farmmatch.com/meadowridgefarm",
+        "contact_person": "Mervin Esh"
+      },
+      "verification_level": "aajonus_verified",
+      "verification_source": "Listed on aajonus.net.",
+      "fulfillment_methods": ["ships_regional"],
+      "products": [
+        {"type": "raw_camel_milk", "notes": "One of very few sources in the US."},
+        {"type": "raw_sheep_milk"},
+        {"type": "raw_cow_milk"},
+        {"type": "wild_seafood", "notes": "Selection is limited and partially frozen per recent customer reports. Their seafood reputation may be exaggerated based on Aajonus's older listings — call before assuming."}
+      ],
+      "tips": [
+        {"type": "phone_script", "title": "Call before ordering", "body": "Call Mervin: 717-530-5999. Confirm: (1) Do they still ship to your state? (2) Is the camel dairy currently available? (3) For seafood: is anything actually fresh never-frozen, or all frozen?"},
+        {"type": "warning", "title": "Avoid the Gulf shrimp", "body": "Their listing includes 'Brown Shell Jumbo Shrimp – Wild Caught GULF.' Aajonus explicitly said NEVER eat anything from the Gulf of Mexico — he called it a military dumping ground. Hard pass on this product."}
+      ],
+      "citations": []
+    },
+
+    {
+      "slug": "northstar-bison",
+      "name": "Northstar Bison",
+      "description": "Wisconsin bison ranch with a verified fresh-never-frozen program. Cut Mon-Tue, ships Wed for Thu delivery. The cleanest option for raw bison and bison organs in the country.",
+      "address": {
+        "state": "WI",
+        "country": "USA"
+      },
+      "contact": {
+        "website": "https://northstarbison.com",
+        "phone": "715-458-4300"
+      },
+      "verification_level": "aajonus_verified",
+      "verification_source": "Listed on aajonus.net for bison.",
+      "fulfillment_methods": ["ships_nationwide"],
+      "products": [
+        {"type": "bison", "notes": "100% grass-fed, never grain-finished. Ground bison and cuts."},
+        {"type": "beef_organs", "notes": "Bison organs: liver, heart, kidney, marrow, caul fat. Ships fresh."},
+        {"type": "tallow_suet", "notes": "Bison suet."}
+      ],
+      "tips": [
+        {"type": "shipping", "title": "Fresh program order cutoff", "body": "Orders for the fresh-never-frozen program must be placed by Wednesday Noon CT. Cut Mon-Tue, ships Wed FedEx, arrives Thursday. Miss the Wed Noon cutoff and your order rolls to next week."},
+        {"type": "insider", "title": "Bison organs are cleaner than beef", "body": "Bison are never grain-fed, never vaccinated as a category, and graze year-round. Their organ profile is among the cleanest commercially available."}
+      ],
+      "citations": []
+    },
+
+    {
+      "slug": "dutch-meadows-farm",
+      "name": "Dutch Meadows Farm",
+      "description": "Pennsylvania Amish farm. Strong #2 alternative to Miller's for A2/A2 dairy, kefir, ghee, and broths. Often has organs when Miller's is sold out.",
+      "address": {
+        "state": "PA",
+        "country": "USA"
+      },
+      "contact": {
+        "website": "https://dutchmeadowsfarm.com",
+        "phone": "717-442-9208"
+      },
+      "verification_level": "aajonus_verified",
+      "verification_source": "Listed on aajonus.net.",
+      "fulfillment_methods": ["ships_nationwide"],
+      "products": [
+        {"type": "raw_cow_milk", "notes": "A2/A2."},
+        {"type": "raw_goat_milk"},
+        {"type": "raw_kefir"},
+        {"type": "raw_butter", "notes": "A2/A2 no-salt."},
+        {"type": "raw_cream"},
+        {"type": "raw_cheese"},
+        {"type": "beef_cuts", "notes": "Grass-fed."},
+        {"type": "beef_organs", "notes": "Often in stock when Miller's is out."},
+        {"type": "wild_seafood"}
+      ],
+      "tips": [
+        {"type": "insider", "title": "Use as Miller's backup", "body": "When Miller's is sold out of organs, butter, or specific cuts, check Dutch Meadows next. Quality is genuinely comparable — they just don't have the direct Aajonus name recognition."}
+      ],
+      "citations": []
+    },
+
+    {
+      "slug": "hilltop-meadow-farm",
+      "name": "Hilltop Meadow Farm",
+      "description": "Pennsylvania farm specializing in cheese — only ships unsalted varieties. Cheese-only operation.",
+      "address": {
+        "state": "PA",
+        "country": "USA"
+      },
+      "contact": {
+        "phone": "570-345-3305"
+      },
+      "verification_level": "aajonus_verified",
+      "fulfillment_methods": ["ships_nationwide"],
+      "products": [
+        {"type": "raw_cheese", "notes": "All cheese is unsalted by default — that's their specialty. No need to verify 'no salt' for individual products."}
+      ],
+      "tips": [],
+      "citations": []
+    },
+
+    {
+      "slug": "swiss-villa",
+      "name": "Swiss Villa",
+      "description": "Pennsylvania farm offering 100% grass-fed cow, goat, and sheep dairy plus beef.",
+      "address": {
+        "state": "PA",
+        "country": "USA"
+      },
+      "contact": {
+        "website": "https://swissvillallc.com",
+        "phone": "717-515-6160"
+      },
+      "verification_level": "aajonus_verified",
+      "fulfillment_methods": ["ships_regional", "in_person"],
+      "products": [
+        {"type": "raw_cow_milk"},
+        {"type": "raw_goat_milk"},
+        {"type": "raw_sheep_milk"},
+        {"type": "raw_butter"},
+        {"type": "raw_cheese"},
+        {"type": "beef_cuts"}
+      ],
+      "tips": [],
+      "citations": []
+    },
+
+    {
+      "slug": "grassway-organics",
+      "name": "Grassway Organics",
+      "description": "RAWMI-certified raw dairy farm. The Raw Milk Institute certification is the highest raw milk safety standard in the US — only a handful of Midwest farms qualify. 100% grass-fed A2/A2 Jersey cows, certified organic, regenerative management. Pickup location in Grayslake IL.",
+      "address": {
+        "street": "W2716 Friemoth Rd",
+        "city": "East Troy",
+        "state": "WI",
+        "zip": "53120",
+        "country": "USA"
+      },
+      "alt_locations": [
+        {"label": "Grayslake IL pickup", "address": "1860 N Illinois 83, Grayslake, IL 60030"}
+      ],
+      "contact": {
+        "website": "https://grasswayorganics.com"
+      },
+      "verification_level": "dev_recommended",
+      "verification_source": "RAWMI-certified — verifiable at rawmilkinstitute.org. Dev-recommended for IL/WI region as a Miller's-tier dairy alternative for those who can't ship from PA.",
+      "fulfillment_methods": ["in_person"],
+      "products": [
+        {"type": "raw_cow_milk", "notes": "A2/A2 Jersey, 100% grass-fed."},
+        {"type": "raw_cream"},
+        {"type": "raw_cheese"},
+        {"type": "raw_butter"},
+        {"type": "beef_cuts"},
+        {"type": "raw_eggs_fertile"},
+        {"type": "poultry"}
+      ],
+      "tips": [
+        {"type": "insider", "title": "Why RAWMI certification matters", "body": "RAWMI (Raw Milk Institute) certification means the farm follows documented Risk Assessment & Management Plans, regular bacterial testing, and on-farm safety standards. Only ~30 farms in the US have it. For raw milk specifically, it's the most meaningful third-party verification available."}
+      ],
+      "citations": []
+    },
+
+    {
+      "slug": "all-grass-farms",
+      "name": "All Grass Farms",
+      "description": "Walk-in farm store in Dundee, IL. 100% grass-fed Angus beef, raw A2 Guernsey milk, pastured pork/chicken/turkey, soy-free eggs. The Chicagoland walk-in option for fresh meat between online orders.",
+      "address": {
+        "street": "18N681 IL Route 31",
+        "city": "Dundee",
+        "state": "IL",
+        "zip": "60118",
+        "country": "USA"
+      },
+      "contact": {
+        "phone": "847-852-7081"
+      },
+      "verification_level": "dev_recommended",
+      "verification_source": "Dev-recommended for IL region. Not on Aajonus's official list, but 100% grass-fed and walk-in fresh.",
+      "fulfillment_methods": ["in_person"],
+      "products": [
+        {"type": "ground_beef", "notes": "100% grass-fed Angus, fresh never-frozen."},
+        {"type": "beef_cuts"},
+        {"type": "beef_organs", "notes": "Variable stock — call ahead."},
+        {"type": "raw_cow_milk", "notes": "Guernsey A2."},
+        {"type": "raw_eggs_fertile", "notes": "Soy-free."},
+        {"type": "poultry"},
+        {"type": "pork"}
+      ],
+      "tips": [
+        {"type": "phone_script", "title": "Call ahead for organs", "body": "Their website doesn't have a dedicated organs category — organ availability is in-store, walk-in only, based on slaughter schedule. Call 847-852-7081 weekly: 'What beef organs do you have in store right now? Can you reserve liver, heart, and marrow?'"},
+        {"type": "insider", "title": "Walk-in hours", "body": "Daily 10a–6p weekdays, 9a–5p weekends. Sometimes liver/heart appear under the Beef category online when in stock."}
+      ],
+      "citations": []
+    },
+
+    {
+      "slug": "hama-hama-oysters",
+      "name": "Hama Hama Oyster Company",
+      "description": "Sixth-generation family-run shellfish farm on Washington's Olympic Peninsula at the mouth of the Hama Hama River. Hood Canal waters are among the cleanest cold-water oyster regions in North America. Ships live oysters overnight nationwide.",
+      "address": {
+        "street": "35846 N. US HWY 101",
+        "city": "Lilliwaup",
+        "state": "WA",
+        "zip": "98555",
+        "country": "USA"
+      },
+      "contact": {
+        "website": "https://hamahamaoysters.com",
+        "phone": "360-877-5811",
+        "email": "info@hamahamaoysters.com"
+      },
+      "verification_level": "dev_recommended",
+      "verification_source": "Pacific Northwest sourcing — meets Aajonus's seafood criteria (not Gulf, cold deep waters). Dev-recommended.",
+      "fulfillment_methods": ["ships_nationwide"],
+      "products": [
+        {"type": "live_oysters", "notes": "Wildcat Oysters ($75/3 dozen) are wild-harvested — the top Aajonus-aligned pick. Hama Hama, Blue Pool, and other named varieties are farmed in the same Hood Canal beds."}
+      ],
+      "tips": [
+        {"type": "insider", "title": "Wildcat = wild, others = farmed", "body": "Per Aajonus rules, wild beats farmed. Wildcat Oysters are their actual wild-harvested beach oysters (3 dozen for $75). Same cold pristine waters as their farmed line, but technically wild."},
+        {"type": "shipping", "title": "Pick a midweek arrival", "body": "Choose Tue/Wed/Thu delivery — never Friday. Friday risks weekend transit delays."},
+        {"type": "shipping", "title": "Storage on arrival", "body": "Take out of shipping bag. Place cup-side down (deep side down) on a tray. Cover with damp paper towel or cloth. Refrigerate at 35-40°F. Never seal in plastic, never submerge in water. Eat within 5-7 days. Closed shell = alive. Open shell that won't close when tapped = dead, throw out."},
+        {"type": "warning", "title": "Skip the frozen products", "body": "Their 'PRE-FROZEN Shucked Oysters' and 'Grillers' (marketed for cooking) are not appropriate for raw eating. Wildcat or Hama Hama live in shell only for raw consumption."},
+        {"type": "warning", "title": "Don't stockpile", "body": "Live oysters are alive — they burn glycogen daily. After 5-7 days many die. You can't stockpile 3 bags in the fridge. Order on a rolling schedule (3 dozen weekly, or 10 dozen biweekly if you're eating 15+/day)."}
+      ],
+      "citations": []
+    },
+
+    {
+      "slug": "taylor-shellfish-farms",
+      "name": "Taylor Shellfish Farms",
+      "description": "Largest premium shellfish farm in Washington state. Multi-generational, Pacific cold-water sourcing.",
+      "address": {
+        "state": "WA",
+        "country": "USA"
+      },
+      "contact": {
+        "website": "https://buy.taylorshellfishfarms.com"
+      },
+      "verification_level": "dev_recommended",
+      "fulfillment_methods": ["ships_nationwide"],
+      "products": [
+        {"type": "live_oysters", "notes": "Kumamoto Oysters ($95/30) are the connoisseur pick — small, deep-cup, most nutrient-dense Pacific variety. Fat Bastards have the most meat per shell. Shigokus are tumble-grown for firmer meat."}
+      ],
+      "tips": [
+        {"type": "warning", "title": "Skip pre-shucked", "body": "Pre-shucked oyster meat = oxidized, lost freshness. For raw eating, always live in shell."},
+        {"type": "warning", "title": "Skip cooking-marketed products", "body": "Pacific Grillers, Griller Kit, Fried Oyster Kit, Smoked Oyster Dip — all cooking products. Not for raw consumption."}
+      ],
+      "citations": []
+    },
+
+    {
+      "slug": "real-oyster-cult",
+      "name": "Real Oyster Cult",
+      "description": "Online oyster marketplace curating from 100+ farms across Atlantic, Pacific, and Canadian waters. Useful for variety and sourcing untreated Canadian oysters.",
+      "contact": {
+        "website": "https://realoystercult.com"
+      },
+      "verification_level": "community_verified",
+      "fulfillment_methods": ["ships_nationwide"],
+      "products": [
+        {"type": "live_oysters", "notes": "Wild Malpeque ($36) are the top wild pick when available — PEI Atlantic, cold clean waters, wild-harvested."}
+      ],
+      "tips": [
+        {"type": "insider", "title": "Filter for Canadian Coast", "body": "US oysters/clams/mussels are required by law to be soaked in UV tanks for 48 hours, which kills both bacteria and beneficial enzymes/probiotics. Canadian shellfish skip this treatment. Filter checkbox: 'Canadian Coast' on their site."},
+        {"type": "warning", "title": "2026 BC norovirus recalls", "body": "FDA active recalls in 2026 on multiple BC Canadian oysters for norovirus (Stellar Bay, Fanny Bay) hitting Illinois distributors. Be extra careful with Canadian sourcing this year — verify lot/harvest dates against active FDA recall list before ordering."}
+      ],
+      "citations": []
+    },
+
+    {
+      "slug": "nordic-catch",
+      "name": "Nordic Catch",
+      "description": "Iceland-direct seafood importer. Among the only online suppliers with a 100% guarantee of fresh, never-frozen sushi-grade seafood. Deep cold Atlantic waters meet Aajonus's deep-sea criteria.",
+      "contact": {
+        "website": "https://nordiccatch.com"
+      },
+      "verification_level": "dev_recommended",
+      "verification_source": "Meets Aajonus's deep-sea fish criteria (Icelandic Atlantic, not Gulf, not farmed). Dev-recommended for raw fish.",
+      "fulfillment_methods": ["ships_nationwide"],
+      "products": [
+        {"type": "raw_fish", "notes": "Wild Halibut Iceland ($20/5.5oz), Wild Wolffish Iceland ($16/5.5oz — secret-weapon deep-sea pick), Wild Cod Loin Iceland ($15/5.5oz), Wild Bluefin Tuna Akami Saku ($36+), Wild Bigeye Tuna ($39), Wild Yellowfin Ahi ($34). Wolffish offers the best $/nutrient ratio for deep-sea fish."}
+      ],
+      "tips": [
+        {"type": "insider", "title": "Wolffish is the secret pick", "body": "Most people don't know about wolffish. Deep-sea, ultra-clean Icelandic waters, sushi-grade quality, ~$16/5.5oz portion. Better $/nutrient ratio than uni for daily eating."},
+        {"type": "warning", "title": "Don't order uni for daily nutrition", "body": "Wild Santa Barbara Uni is incredible (highest nutrient density per bite of any seafood) but at $175/200g (~$400/lb equivalent) it's caviar-tier pricing. Save for occasional treats. Wolffish/cod are the daily picks."}
+      ],
+      "citations": []
+    },
+
+    {
+      "slug": "catalina-offshore-products",
+      "name": "Catalina Offshore Products",
+      "description": "San Diego sushi-grade seafood supplier serving sushi restaurants nationally for 45+ years. Best for uni (sea urchin) — the OG supplier.",
+      "address": {
+        "city": "San Diego",
+        "state": "CA",
+        "country": "USA"
+      },
+      "contact": {
+        "website": "https://catalinaop.com",
+        "phone": "619-297-9797"
+      },
+      "verification_level": "dev_recommended",
+      "fulfillment_methods": ["ships_nationwide"],
+      "products": [
+        {"type": "raw_fish", "notes": "Wild Pacific Albacore Tuna (Shiro Maguro) is the best fresh raw pick from Catalina. Avoid all farmed salmon listings."}
+      ],
+      "tips": [
+        {"type": "warning", "title": "Most Catalina fish ships flash-frozen", "body": "Industry standard for sushi-grade fish in the US is flash-frozen at sea (parasite safety regulation). Catalina follows this. Their fish is excellent quality but technically frozen-thawed by the time it reaches you. For truly fresh-never-frozen, Nordic Catch is better. For uni, Catalina is still the best US source."},
+        {"type": "warning", "title": "Avoid these listings", "body": "Skip: any farmed salmon (Canadian, Faroe, Mt. Cook), any 'Ranched' Bluefin (= farmed), Kobe Cold Smoked Salmon (smoking = heat process), Steamed Monkfish Liver (cooked + fish organs is double-no per Aajonus), Marinated Mackerel/Shime Saba (vinegar-cured), Pacific Escolar (contains gempylotoxin, severe digestive issues — not for daily eating)."}
+      ],
+      "citations": []
+    },
+
+    {
+      "slug": "vital-choice",
+      "name": "Vital Choice",
+      "description": "Wild Alaskan seafood supplier. Source for Black Cod / Sablefish — Aajonus's #1 deep-sea fish pick.",
+      "contact": {
+        "website": "https://vitalchoice.com"
+      },
+      "verification_level": "dev_recommended",
+      "fulfillment_methods": ["ships_nationwide"],
+      "products": [
+        {"type": "raw_fish", "notes": "Wild Alaskan Black Cod (Sablefish) — Aajonus called it the top deep-sea pick. Their default ship state is frozen — call to ask about fresh shipping options or seasonal fresh availability."}
+      ],
+      "tips": [
+        {"type": "warning", "title": "Default ships frozen", "body": "Vital Choice flash-freezes most fish at sea. For raw eating, this is a downgrade from truly fresh. If sablefish is out of season for fresh, the frozen version is still better than no deep-sea fish — but Pure Food Fish Market (Pike Place Seattle) often has fresh black cod when in season."}
+      ],
+      "citations": [
+        {"source_type": "website", "source_name": "aajonus.net", "source_detail": "Seafood guidance", "quote": "Aajonus identified deep-sea fish — including Sablefish (Black Cod), Swordfish, Monkfish, Grenadier, and Orange Roughy — as preferred because they isolate toxins in fat layers."}
+      ]
+    },
+
+    {
+      "slug": "pure-food-fish-market",
+      "name": "Pure Food Fish Market",
+      "description": "Family-owned Seattle Pike Place Market fishmonger since 1911. Among the best US sources for fresh never-frozen wild Alaskan sablefish/black cod when in season.",
+      "address": {
+        "city": "Seattle",
+        "state": "WA",
+        "country": "USA"
+      },
+      "contact": {
+        "website": "https://freshseafood.com",
+        "phone": "1-800-392-3474"
+      },
+      "verification_level": "dev_recommended",
+      "fulfillment_methods": ["ships_nationwide"],
+      "products": [
+        {"type": "raw_fish", "notes": "Fresh wild Alaskan sablefish (black cod), halibut, salmon. Seasonal availability."}
+      ],
+      "tips": [
+        {"type": "phone_script", "title": "Call for fresh sablefish", "body": "Call 1-800-392-3474. Ask: 'Do you have fresh wild Alaskan sablefish/black cod available this week? Can you overnight ship to [state] fresh, never frozen?' If yes — that's the best US source for Aajonus's #1 deep-sea fish."}
+      ],
+      "citations": []
+    },
+
+    {
+      "slug": "bay-area-bee-company",
+      "name": "Bay Area Bee Company",
+      "description": "California small-batch honey producer with the strictest standards verified by Aajonus himself: 'Never heated at all. Bees have never been fed anything.'",
+      "address": {
+        "state": "CA",
+        "country": "USA"
+      },
+      "contact": {
+        "website": "https://bayareabeecompany.com",
+        "phone": "415-868-5598"
+      },
+      "verification_level": "aajonus_verified",
+      "fulfillment_methods": ["ships_nationwide"],
+      "products": [
+        {"type": "raw_honey", "notes": "Truly unheated. Bees never fed sugar/syrup."}
+      ],
+      "tips": [],
+      "citations": [
+        {"source_type": "website", "source_name": "aajonus.net", "source_detail": "Honey sourcing page", "quote": "Aajonus described this producer as: 'Never heated at all. Bees have never been fed anything.'"}
+      ]
+    },
+
+    {
+      "slug": "rare-hawaiian-honey",
+      "name": "Rare Hawaiian Honey Company",
+      "description": "Hawaii White Kiawe honey. Bees never fed sugar.",
+      "address": {
+        "state": "HI",
+        "country": "USA"
+      },
+      "contact": {
+        "website": "https://rarehawaiianhoney.com"
+      },
+      "verification_level": "aajonus_verified",
+      "fulfillment_methods": ["ships_nationwide"],
+      "products": [
+        {"type": "raw_honey", "notes": "White Kiawe varietal."}
+      ],
+      "tips": [],
+      "citations": []
+    },
+
+    {
+      "slug": "apollo-olive-oil",
+      "name": "Apollo Olive Oil",
+      "description": "California olive oil producer. Oil is never processed above 90°F — meets Aajonus's <96°F raw threshold.",
+      "address": {
+        "state": "CA",
+        "country": "USA"
+      },
+      "contact": {
+        "website": "https://apollooliveoil.com"
+      },
+      "verification_level": "aajonus_verified",
+      "fulfillment_methods": ["ships_nationwide"],
+      "products": [
+        {"type": "olive_oil", "notes": "Never above 90°F."}
+      ],
+      "tips": [],
+      "citations": []
+    },
+
+    {
+      "slug": "bariani-olive-oil",
+      "name": "Bariani Olive Oil",
+      "description": "California olive oil producer. Kept below 80°F throughout processing.",
+      "address": {
+        "state": "CA",
+        "country": "USA"
+      },
+      "contact": {
+        "website": "https://barianioliveoil.com"
+      },
+      "verification_level": "aajonus_verified",
+      "fulfillment_methods": ["ships_nationwide"],
+      "products": [
+        {"type": "olive_oil", "notes": "Below 80°F throughout."}
+      ],
+      "tips": [],
+      "citations": []
+    },
+
+    {
+      "slug": "original-living-coconut",
+      "name": "Original Living Coconut",
+      "description": "Missouri coconut cream producer. Aajonus-aligned processing.",
+      "address": {
+        "state": "MO",
+        "country": "USA"
+      },
+      "contact": {
+        "website": "https://originallivingcoconut.com"
+      },
+      "verification_level": "aajonus_verified",
+      "fulfillment_methods": ["ships_nationwide"],
+      "products": [
+        {"type": "coconut_cream"}
+      ],
+      "tips": [
+        {"type": "checkout_note", "title": "Type 'Primal' in comments", "body": "When ordering, type 'Primal' in checkout comments — they handle these orders with extra care."}
+      ],
+      "citations": []
+    }
+  ],
+
+  "forum_categories": [
+    {"slug": "sourcing", "name": "Sourcing", "description": "Where to buy what — farms, online stores, sourcing tips, recent orders, and product quality reports.", "display_order": 1},
+    {"slug": "protocols", "name": "Protocols & Recipes", "description": "Aajonus's specific protocols, recipes, daily intakes, healing combinations.", "display_order": 2},
+    {"slug": "experiences", "name": "Experiences & Healing", "description": "Personal experiences, healing reports, transitions, troubleshooting.", "display_order": 3},
+    {"slug": "primal-101", "name": "Primal 101", "description": "Beginner questions, transitioning from carnivore/SAD/keto, basic principles.", "display_order": 4},
+    {"slug": "lineage", "name": "Aajonus Lineage", "description": "Discussion of Aajonus's books, talks, recordings, primary sources, and direct citations.", "display_order": 5},
+    {"slug": "off-topic", "name": "Off-Topic", "description": "General community discussion, related health topics, lifestyle.", "display_order": 6}
+  ],
+
+  "starter_threads": [
+    {
+      "category_slug": "sourcing",
+      "title": "Miller's pet food vs meats-only line — what's the real difference?",
+      "body": "I've been buying Miller's regular ground beef at $12/lb and recently noticed the 'pet food' line is $8.50/lb. Court documents from US v. Miller's Organic Farm and PA Department of Agriculture testimony confirm these are the same animals from the same farm — the pet food label is a legal workaround because PA's Retail Food Facility Safety Act only applies to food labeled for human consumption. Posting this so people know the loophole is documented and real, not just internet rumor. Has anyone called Amos directly to ask about the specific differences in processing?"
+    },
+    {
+      "category_slug": "sourcing",
+      "title": "How to specify 'fresh, never frozen' on Amos Miller orders (working template)",
+      "body": "Their default ship state for meat is frozen unless you specify otherwise. Working checkout note that's gotten me consistent fresh orders: 'Hi Amos — Primal Diet member. Please ship all items fresh, no substitutions. 2-Day FedEx with extra ice packs. Thanks & God bless.' Keep it short. Order Mon-Wed only. What checkout notes work for everyone else?"
+    },
+    {
+      "category_slug": "sourcing",
+      "title": "Wolffish — the secret deep-sea fish nobody talks about",
+      "body": "Spent weeks looking for affordable fresh-never-frozen deep-sea fish for raw eating. Sablefish/black cod is Aajonus's top pick but seasonal availability is rough. Nordic Catch's Wild Wolffish from Iceland is $16 per 5.5oz portion, deep-sea Atlantic, ultra-clean. Better $/nutrient ratio than uni or anything else for daily eating. Anyone else been ordering this?"
+    },
+    {
+      "category_slug": "protocols",
+      "title": "Aajonus's Lubrication Formula — exact ratio and how I use it",
+      "body": "The healing staple Aajonus called the 'Lubrication Formula': 3 tbsp raw butter + 1 tbsp raw cream + 1 tsp honey. Eaten 2-3x daily. I just spoon it straight, no blending needed if butter is room temp. Curious how others incorporate it — pre-workout, post-meal, before bed?"
+    },
+    {
+      "category_slug": "protocols",
+      "title": "Egg whites raw vs cooked — what Aajonus actually said",
+      "body": "Common confusion: the 'cook the whites for biotin/avidin' advice is from strict carnivore (Saladino, etc.), not primal. Aajonus explicitly addressed this in his Food Book. His position: yolk has more biotin than the white has avidin, net surplus, lab-tested himself, ate up to 60 raw whole eggs/day for decades, never had biotin deficiency. Avidin issue is real but tiny — would take 20-30 eggs/day for 8-9 months with no other food. Eat the whole egg raw."
+    },
+    {
+      "category_slug": "protocols",
+      "title": "Don't cook IN raw butter — use tallow",
+      "body": "Saw a few people on here using $19/jar Amos butter as cooking fat. Cooking destroys the enzyme/nutrient profile that makes raw butter healing in the first place. Aajonus's lab work showed raw butter healed skin disorders in 1 week, frozen butter took 5 weeks (~80% nutrient loss from freezing alone — heating destroys even more). Use beef tallow for cooking. Save raw butter for raw consumption only."
+    },
+    {
+      "category_slug": "experiences",
+      "title": "3 months on Aajonus protocol — putting on lean muscle, no stomach issues",
+      "body": "6'4\" male, lean build, transitioned from carnivore to Aajonus protocol about 3 months ago. Daily: 6 raw whole eggs, 3 lbs raw ground beef across three meals, organs (liver/heart/marrow rotation), 6 tbsp raw butter spread through day, 1-2 oz no-salt cottage cheese between meals, 3-4 oz raw cream pre-bed. Hitting gym hard, putting on visible lean muscle, zero stomach issues, energy is dialed in. Anyone else doing this for hypertrophy specifically?"
+    },
+    {
+      "category_slug": "primal-101",
+      "title": "Starter sourcing guide for someone just transitioning from carnivore",
+      "body": "If you're coming from carnivore and only need to add raw dairy + organs to start, here's the minimum viable order list: (1) Miller's raw butter no-salt in glass, (2) Miller's heavy cream in glass, (3) Miller's no-salt cottage cheese (sheep version is explicitly labeled), (4) backorder beef organs from Miller's, (5) source local fresh meat for daily ground beef. Costs ~$200 to start. Don't overcomplicate it."
+    },
+    {
+      "category_slug": "lineage",
+      "title": "Aajonus on freezing — direct quotes and the actual hierarchy",
+      "body": "Aajonus's hierarchy: cooking = worst (destroys enzymes, denatures proteins, creates AGEs/acrylamides/aldehydes). Freezing = mildly bad (ice crystals rupture cell membranes, ~10-30% nutrient loss). Fresh raw = ideal. He called freezing 'fractionation' — fat molecules separate from proteins, enzymes weaken. Frozen raw is roughly 70-80% as good as fresh. Practical: frozen quality meat still beats grocery store cooked meat by miles. Don't skip nutrition waiting for perfect conditions."
+    },
+    {
+      "category_slug": "lineage",
+      "title": "Aajonus on dead/aged shellfish — what he actually said (and didn't)",
+      "body": "Researched this thoroughly. Aajonus's documented 'high meat' practice was specifically with land animal meat (beef, organs) sealed in jars over weeks for controlled anaerobic fermentation. From his 2001 Health Panel transcript: 'eating high meat... increases positivity and well-being.' He explicitly rejected germ theory and called pathogens 'garbage disposals.' BUT — he never specifically wrote about dead oysters, vibrio, or marine bacteria. High meat (land/anaerobic) and dead shellfish (marine/aerobic) are different biological processes. Don't extrapolate his land meat protocol to oysters without acknowledging it's frontier territory he didn't document."
+    }
+  ]
+}
