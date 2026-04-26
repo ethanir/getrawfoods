@@ -18,6 +18,10 @@ dependencies = [
     "python-multipart>=0.0.17",
 ]
 
+[tool.setuptools.packages.find]
+include = ["app*"]
+exclude = ["alembic*", "scripts*", "tests*"]
+
 [project.optional-dependencies]
 dev = [
     "ruff>=0.7.0",
