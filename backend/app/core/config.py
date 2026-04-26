@@ -4,8 +4,6 @@ All config goes through this module so we have a single source of truth.
 Pydantic-settings validates types at startup — fail loud, fail early.
 """
 
-from typing import List
-
 from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -26,7 +24,7 @@ class Settings(BaseSettings):
     cors_origins: str = Field(default="http://localhost:3000")
 
     @property
-    def cors_origins_list(self) -> List[str]:
+    def cors_origins_list(self) -> list[str]:
         return [origin.strip() for origin in self.cors_origins.split(",") if origin.strip()]
 
     # Auth (used in Phase 3+)

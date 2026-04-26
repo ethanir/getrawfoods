@@ -38,6 +38,12 @@ target-version = "py312"
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "N", "W"]
 
+# FastAPI relies on Depends()/Query()/Body() in argument defaults — that IS the
+# idiom. Ignore B008 globally so ruff stops fighting the framework.
+[tool.ruff.lint.per-file-ignores]
+"app/api/*.py" = ["B008"]
+
+
 [tool.black]
 line-length = 100
 target-version = ["py312"]

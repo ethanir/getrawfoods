@@ -1,5 +1,4 @@
 """Farm listing and detail endpoints."""
-from typing import List, Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 from geoalchemy2 import Geometry
@@ -13,18 +12,21 @@ from app.schemas.farm import FarmDetail, FarmListItem, FarmMapPin
 router = APIRouter(prefix="/api/farms", tags=["farms"])
 
 
-@router.get("", response_model=List[FarmListItem])
+@router.get("", response_model=list[FarmListItem])
 def list_farms(
     db: Session = Depends(get_db),
-    verification_level: Optional[str] = Query(None),
-    diet_profile: Optional[str] = Query(
+    verification_level: str | None = Query(None),
+    diet_profile: str | None = Query(
         None,
-        description="Filter farms that serve this diet profile (raw_carnivore, aajonus_primal, weston_a_price).",
+        description=(
+            "Filter farms that serve this diet profile "
+            "(raw_carnivore, aajonus_primal, weston_a_price)."
+        ),
     ),
-    state: Optional[str] = Query(None),
+    state: str | None = Query(None),
     limit: int = Query(50, ge=1, le=200),
     offset: int = Query(0, ge=0),
-) -> List[Farm]:
+) -> list[Farm]:
     stmt = select(Farm).where(Farm.status != "closed")
     if verification_level:
         stmt = stmt.where(Farm.verification_level == verification_level)
@@ -33,19 +35,23 @@ def list_farms(
     if diet_profile:
         # JSONB containment: row's diet_profiles array must contain the requested profile
         stmt = stmt.where(Farm.diet_profiles.contains([diet_profile]))
-    stmt = stmt.order_by(
-        # Aajonus-verified first, then dev-recommended, then everything else
-        Farm.verification_level.desc(),
-        Farm.name.asc(),
-    ).limit(limit).offset(offset)
+    stmt = (
+        stmt.order_by(
+            # Aajonus-verified first, then dev-recommended, then everything else
+            Farm.verification_level.desc(),
+            Farm.name.asc(),
+        )
+        .limit(limit)
+        .offset(offset)
+    )
     return list(db.execute(stmt).scalars().all())
 
 
-@router.get("/map", response_model=List[FarmMapPin])
+@router.get("/map", response_model=list[FarmMapPin])
 def list_farm_pins(
     db: Session = Depends(get_db),
-    diet_profile: Optional[str] = Query(None),
-) -> List[FarmMapPin]:
+    diet_profile: str | None = Query(None),
+) -> list[FarmMapPin]:
     """Lightweight farm pins for the map view.
 
     Defined before /{slug} so FastAPI matches the literal path first;

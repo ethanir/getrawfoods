@@ -4,6 +4,7 @@ Idempotent: running multiple times will not duplicate farms (matched by slug).
 For v0.2, also clears any farms whose slugs are no longer in seed_data.json
 so the trimmed list takes effect.
 """
+
 import json
 import sys
 from pathlib import Path
@@ -102,9 +103,7 @@ def seed() -> None:
             )
             coords = farm_data.get("coordinates")
             if coords:
-                farm.location = func.ST_GeogFromText(
-                    f"POINT({coords['lng']} {coords['lat']})"
-                )
+                farm.location = func.ST_GeogFromText(f"POINT({coords['lng']} {coords['lat']})")
             for product in farm_data.get("products", []):
                 farm.products.append(
                     FarmProduct(
