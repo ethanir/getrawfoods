@@ -1,107 +1,104 @@
-import { useEffect, useState } from 'react';
-import { api } from '../lib/api';
-import FarmRow from '../components/FarmRow';
+import { useEffect, useState } from "react";
+import { fetchFarms } from "../lib/api";
+import FarmRow from "../components/FarmRow";
 
-const VERIFICATION_OPTIONS = [
-  { value: '', label: 'All verification levels' },
-  { value: 'aajonus_verified', label: 'Aajonus-verified only' },
-  { value: 'dev_recommended', label: 'Dev-recommended only' },
-  { value: 'community_verified', label: 'Community-verified only' },
+const PROFILES = [
+  { slug: null, label: "All diets" },
+  { slug: "raw_carnivore", label: "Raw carnivore" },
+  { slug: "aajonus_primal", label: "Aajonus primal" },
+  { slug: "weston_a_price", label: "Weston A. Price" },
 ];
 
 export default function Home() {
   const [farms, setFarms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [filters, setFilters] = useState({ verification_level: '', q: '' });
+  const [search, setSearch] = useState("");
+  const [verificationLevel, setVerificationLevel] = useState("");
+  const [dietProfile, setDietProfile] = useState(null);
 
   useEffect(() => {
-    let cancelled = false;
     setLoading(true);
-    setError(null);
-
-    api
-      .listFarms({
-        verification_level: filters.verification_level || undefined,
-        q: filters.q.trim() || undefined,
-      })
+    const params = {};
+    if (verificationLevel) params.verification_level = verificationLevel;
+    if (dietProfile) params.diet_profile = dietProfile;
+    fetchFarms(params)
       .then((data) => {
-        if (!cancelled) setFarms(data);
+        setFarms(data);
+        setError(null);
       })
-      .catch((err) => {
-        if (!cancelled) setError(err.message || 'Failed to load farms');
-      })
-      .finally(() => {
-        if (!cancelled) setLoading(false);
-      });
+      .catch((e) => setError(e.message))
+      .finally(() => setLoading(false));
+  }, [verificationLevel, dietProfile]);
 
-    return () => {
-      cancelled = true;
-    };
-  }, [filters.verification_level, filters.q]);
+  const filtered = search
+    ? farms.filter((f) =>
+        f.name.toLowerCase().includes(search.toLowerCase()) ||
+        (f.description || "").toLowerCase().includes(search.toLowerCase())
+      )
+    : farms;
 
   return (
-    <>
-      <section style={{ marginBottom: '1rem' }}>
-        <h1>Farm directory</h1>
-        <p style={{ color: 'var(--color-muted)', maxWidth: '60ch' }}>
-          Verified suppliers of raw dairy, grass-fed organs, wild seafood, and
-          other raw food staples. Aajonus-verified entries are sourced from
-          his published lists and books; dev-recommended are personally vetted.
+    <div className="ph-container">
+      <div className="ph-page-header">
+        <h1 className="ph-page-title">Farm directory</h1>
+        <p className="ph-page-subtitle">
+          A small, curated set of suppliers for raw meat, organs, dairy, and
+          wild seafood. Aajonus-verified entries are sourced from his published
+          materials; dev-recommended are personally vetted.
         </p>
-      </section>
+      </div>
 
-      <div className="filter-bar">
+      <div className="ph-profile-pills" role="tablist" aria-label="Diet profile">
+        {PROFILES.map((p) => (
+          <button
+            key={p.slug || "all"}
+            role="tab"
+            aria-selected={dietProfile === p.slug}
+            className={`ph-profile-pill ${
+              dietProfile === p.slug ? "is-active" : ""
+            }`}
+            onClick={() => setDietProfile(p.slug)}
+          >
+            {p.label}
+          </button>
+        ))}
+      </div>
+
+      <div className="ph-filter-bar">
         <input
-          type="search"
+          type="text"
+          className="ph-input"
           placeholder="Search farms…"
-          value={filters.q}
-          onChange={(e) => setFilters((f) => ({ ...f, q: e.target.value }))}
-          style={{ flex: '1 1 12rem', minWidth: '12rem' }}
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
         />
         <select
-          value={filters.verification_level}
-          onChange={(e) =>
-            setFilters((f) => ({ ...f, verification_level: e.target.value }))
-          }
+          className="ph-select"
+          value={verificationLevel}
+          onChange={(e) => setVerificationLevel(e.target.value)}
         >
-          {VERIFICATION_OPTIONS.map((o) => (
-            <option key={o.value} value={o.value}>
-              {o.label}
-            </option>
-          ))}
+          <option value="">All verification levels</option>
+          <option value="aajonus_verified">Aajonus-verified</option>
+          <option value="dev_recommended">Dev-recommended</option>
+          <option value="community_verified">Community-verified</option>
         </select>
       </div>
 
-      {loading && (
-        <p style={{ color: 'var(--color-muted)' }}>Loading farms…</p>
-      )}
-      {error && (
-        <p style={{ color: 'var(--color-warning)' }}>
-          Couldn&rsquo;t load farms: {error}. Is the backend running on port 8000?
-        </p>
-      )}
-      {!loading && !error && farms.length === 0 && (
-        <p style={{ color: 'var(--color-muted)' }}>
-          No farms match those filters.
-        </p>
-      )}
+      <div className="ph-result-count">
+        {loading ? "loading…" : `${filtered.length} farms`}
+      </div>
 
-      {!loading && !error && farms.length > 0 && (
-        <>
-          <div style={{
-            color: 'var(--color-muted)',
-            fontSize: '0.85rem',
-            fontFamily: 'IBM Plex Mono, ui-monospace, monospace',
-            padding: '0.5rem 0',
-          }}>
-            {farms.length} {farms.length === 1 ? 'farm' : 'farms'}
-          </div>
-          {farms.map((farm) => (
-            <FarmRow key={farm.id} farm={farm} />
-          ))}
-        </>
-      )}
-    </>
+      {error && <div className="ph-error">Failed to load: {error}</div>}
+
+      <div>
+        {filtered.map((farm) => (
+          <FarmRow key={farm.id} farm={farm} />
+        ))}
+        {!loading && filtered.length === 0 && (
+          <div className="ph-empty">No farms match those filters.</div>
+        )}
+      </div>
+    </div>
   );
 }

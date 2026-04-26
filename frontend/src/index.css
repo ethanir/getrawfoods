@@ -278,3 +278,214 @@
   color: var(--color-muted);
   text-align: center;
 }
+/* ============================================================
+   v0.2 additions: diet profile pills, best-for tags, tooltips
+   ============================================================ */
+
+.ph-profile-pills {
+  display: flex;
+  gap: 6px;
+  margin: 0 0 10px 0;
+  flex-wrap: wrap;
+}
+
+.ph-profile-pill {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 5px 11px;
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  cursor: pointer;
+  transition: none;
+}
+
+.ph-profile-pill:hover {
+  background: var(--surface);
+}
+
+.ph-profile-pill.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+
+.ph-best-for {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 1px 6px;
+  border: 1px solid var(--ink-muted);
+  color: var(--ink-muted);
+  cursor: help;
+}
+
+.ph-badge[title] {
+  cursor: help;
+}
+
+.ph-empty {
+  padding: 14px 0;
+  color: var(--ink-muted);
+  font-size: 13px;
+}
+
+.ph-error {
+  padding: 10px 12px;
+  margin: 10px 0;
+  border: 1px solid var(--accent);
+  background: var(--surface);
+  color: var(--accent);
+  font-size: 13px;
+  font-family: var(--font-mono);
+}
+
+/* ============================================================
+   Layout primitives — referenced by Home.jsx, FarmRow.jsx, etc.
+   ============================================================ */
+
+.ph-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 32px 48px;
+}
+
+.ph-page-header {
+  margin-bottom: 18px;
+}
+
+.ph-page-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0 0 6px;
+  color: var(--ink);
+}
+
+.ph-page-subtitle {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: 14px;
+  line-height: 1.5;
+  max-width: 70ch;
+}
+
+.ph-filter-bar {
+  display: flex;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.ph-input,
+.ph-select {
+  font: inherit;
+  font-size: 13px;
+  background: #ffffff;
+  border: 1px solid var(--rule);
+  padding: 6px 10px;
+  color: var(--ink);
+  border-radius: 0;
+  outline: none;
+}
+
+.ph-input {
+  flex: 1;
+  min-width: 200px;
+}
+
+.ph-input:focus,
+.ph-select:focus {
+  border-color: var(--accent);
+}
+
+.ph-result-count {
+  color: var(--ink-muted);
+  font-size: 11px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+  padding: 8px 0;
+}
+
+.ph-farm-row {
+  border-bottom: 1px solid var(--rule);
+  padding: 14px 0;
+}
+
+.ph-farm-row:last-child {
+  border-bottom: none;
+}
+
+.ph-farm-row-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.ph-farm-name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ph-farm-name:hover {
+  text-decoration: none;
+}
+
+.ph-farm-location {
+  color: var(--ink-muted);
+  font-size: 13px;
+}
+
+.ph-farm-description {
+  margin: 4px 0 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink);
+  max-width: 80ch;
+}
+
+.ph-badge {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 1px 6px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.ph-badge-aajonus_verified {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.ph-badge-dev_recommended {
+  border-color: #2d5a3d;
+  color: #2d5a3d;
+}
+
+.ph-badge-community_verified {
+  border-color: #5a4a2d;
+  color: #5a4a2d;
+}
+
+.ph-badge-unverified {
+  border-color: var(--ink-muted);
+  color: var(--ink-muted);
+}

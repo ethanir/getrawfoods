@@ -1,13 +1,8 @@
-"""Farm-related API endpoints.
-
-Public read-only endpoints in this phase. Write endpoints (submit, edit,
-review, vote) come in Phase 3+ when auth is in place.
-"""
-
-from typing import Annotated
+"""Farm listing and detail endpoints."""
+from typing import List, Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query
-from sqlalchemy import or_, select
+from sqlalchemy import select
 from sqlalchemy.orm import Session, selectinload
 
 from app.core.database import get_db
@@ -16,50 +11,37 @@ from app.schemas.farm import FarmDetail, FarmListItem
 
 router = APIRouter(prefix="/api/farms", tags=["farms"])
 
-DbSession = Annotated[Session, Depends(get_db)]
 
-
-@router.get("", response_model=list[FarmListItem])
+@router.get("", response_model=List[FarmListItem])
 def list_farms(
-    db: DbSession,
-    state: Annotated[str | None, Query(description="Filter by US state")] = None,
-    verification_level: Annotated[
-        str | None,
-        Query(description="aajonus_verified | dev_recommended | community_verified | unverified"),
-    ] = None,
-    q: Annotated[str | None, Query(description="Substring search on name + description")] = None,
-    limit: Annotated[int, Query(ge=1, le=100)] = 50,
-    offset: Annotated[int, Query(ge=0)] = 0,
-) -> list[Farm]:
-    """List farms with optional filters.
-
-    Returns the slim representation suitable for a directory list.
-    """
+    db: Session = Depends(get_db),
+    verification_level: Optional[str] = Query(None),
+    diet_profile: Optional[str] = Query(
+        None,
+        description="Filter farms that serve this diet profile (raw_carnivore, aajonus_primal, weston_a_price).",
+    ),
+    state: Optional[str] = Query(None),
+    limit: int = Query(50, ge=1, le=200),
+    offset: int = Query(0, ge=0),
+) -> List[Farm]:
     stmt = select(Farm).where(Farm.status != "closed")
-
-    if state:
-        stmt = stmt.where(Farm.state == state)
     if verification_level:
         stmt = stmt.where(Farm.verification_level == verification_level)
-    if q:
-        like = f"%{q}%"
-        stmt = stmt.where(or_(Farm.name.ilike(like), Farm.description.ilike(like)))
-
-    # Order: aajonus_verified first, then dev_recommended, then alphabetical
-    verification_order = {
-        "aajonus_verified": 0,
-        "dev_recommended": 1,
-        "community_verified": 2,
-        "unverified": 3,
-    }
-    farms = list(db.scalars(stmt.limit(limit).offset(offset)))
-    farms.sort(key=lambda f: (verification_order.get(f.verification_level, 99), f.name.lower()))
-    return farms
+    if state:
+        stmt = stmt.where(Farm.state == state.upper())
+    if diet_profile:
+        # JSONB containment: row's diet_profiles array must contain the requested profile
+        stmt = stmt.where(Farm.diet_profiles.contains([diet_profile]))
+    stmt = stmt.order_by(
+        # Aajonus-verified first, then dev-recommended, then everything else
+        Farm.verification_level.desc(),
+        Farm.name.asc(),
+    ).limit(limit).offset(offset)
+    return list(db.execute(stmt).scalars().all())
 
 
 @router.get("/{slug}", response_model=FarmDetail)
-def get_farm(slug: str, db: DbSession) -> Farm:
-    """Get a single farm by slug, with all related data eager-loaded."""
+def get_farm(slug: str, db: Session = Depends(get_db)) -> Farm:
     stmt = (
         select(Farm)
         .where(Farm.slug == slug)
@@ -70,7 +52,7 @@ def get_farm(slug: str, db: DbSession) -> Farm:
             selectinload(Farm.citations),
         )
     )
-    farm = db.scalar(stmt)
-    if not farm:
+    farm = db.execute(stmt).scalar_one_or_none()
+    if farm is None:
         raise HTTPException(status_code=404, detail="Farm not found")
     return farm

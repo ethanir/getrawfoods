@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { api } from '../lib/api';
+import { fetchFarm } from '../lib/api';
 import VerificationBadge from '../components/VerificationBadge';
 
 const PRODUCT_LABELS = {
@@ -61,8 +61,7 @@ export default function FarmDetail() {
     setLoading(true);
     setError(null);
 
-    api
-      .getFarm(slug)
+    fetchFarm(slug)
       .then((data) => {
         if (!cancelled) setFarm(data);
       })

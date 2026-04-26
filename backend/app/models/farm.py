@@ -60,6 +60,9 @@ class Farm(Base):
     )
     verification_source: Mapped[str | None] = mapped_column(Text, nullable=True)
 
+    diet_profiles: Mapped[list] = mapped_column(JSONB, nullable=False, server_default="[]")
+    best_for: Mapped[str | None] = mapped_column(String(80), nullable=True)
+
     # Submission
     submitted_by: Mapped[uuid.UUID | None] = mapped_column(
         UUID(as_uuid=True), ForeignKey("users.id", ondelete="SET NULL"), nullable=True

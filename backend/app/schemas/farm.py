@@ -1,10 +1,6 @@
-"""Pydantic schemas for farm-related API responses.
-
-These define the public API shape — keep them thin and explicit.
-Never return ORM models directly; always serialize through these.
-"""
-
+"""Pydantic request/response schemas for farms."""
 from datetime import datetime
+from typing import List, Optional
 from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict
@@ -13,91 +9,83 @@ from pydantic import BaseModel, ConfigDict
 class FarmProductRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
-    id: UUID
     product_type: str
-    notes: str | None = None
-    must_specify: str | None = None
-    price_per_unit: str | None = None
-    unit: str | None = None
+    notes: Optional[str] = None
+    must_specify: Optional[str] = None
+    price_per_unit: Optional[str] = None
+    unit: Optional[str] = None
 
 
 class FarmFulfillmentRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
-    id: UUID
     method: str
 
 
 class FarmTipRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
-    id: UUID
     tip_type: str
     title: str
     body: str
-    upvotes: int
-    created_at: datetime
 
 
 class FarmCitationRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
-    id: UUID
     source_type: str
     source_name: str
-    source_detail: str | None = None
-    source_url: str | None = None
-    quote: str | None = None
-    verified: bool
+    source_detail: Optional[str] = None
+    source_url: Optional[str] = None
+    quote: Optional[str] = None
+    verified: bool = False
 
 
 class FarmListItem(BaseModel):
-    """Slim shape used in list views (homepage, search results)."""
-
+    """Compact farm representation for the directory list."""
     model_config = ConfigDict(from_attributes=True)
 
     id: UUID
     slug: str
     name: str
-    description: str | None = None
-    city: str | None = None
-    state: str | None = None
-    country: str
+    description: Optional[str] = None
+    city: Optional[str] = None
+    state: Optional[str] = None
+    country: str = "USA"
     verification_level: str
     status: str
+    diet_profiles: List[str] = []
+    best_for: Optional[str] = None
 
 
 class FarmDetail(BaseModel):
-    """Full shape used on the farm detail page."""
-
+    """Full farm representation for the detail page."""
     model_config = ConfigDict(from_attributes=True)
 
     id: UUID
     slug: str
     name: str
-    alt_names: list | None = None
-    description: str | None = None
-
-    address_line1: str | None = None
-    city: str | None = None
-    state: str | None = None
-    zip: str | None = None
-    country: str
-
-    website: str | None = None
-    phone: str | None = None
-    email: str | None = None
-    support_email: str | None = None
-    contact_person: str | None = None
-
+    alt_names: Optional[List[str]] = None
+    description: Optional[str] = None
+    address_line1: Optional[str] = None
+    city: Optional[str] = None
+    state: Optional[str] = None
+    zip: Optional[str] = None
+    country: str = "USA"
+    website: Optional[str] = None
+    phone: Optional[str] = None
+    email: Optional[str] = None
+    support_email: Optional[str] = None
+    contact_person: Optional[str] = None
     status: str
     verification_level: str
-    verification_source: str | None = None
-
-    products: list[FarmProductRead] = []
-    fulfillment: list[FarmFulfillmentRead] = []
-    tips: list[FarmTipRead] = []
-    citations: list[FarmCitationRead] = []
-
+    verification_source: Optional[str] = None
+    diet_profiles: List[str] = []
+    best_for: Optional[str] = None
+    is_approved: bool
     created_at: datetime
     updated_at: datetime
+    products: List[FarmProductRead] = []
+    fulfillment: List[FarmFulfillmentRead] = []
+    tips: List[FarmTipRead] = []
+    citations: List[FarmCitationRead] = []

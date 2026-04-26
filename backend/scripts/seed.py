@@ -1,13 +1,14 @@
 """Seed the database from docs/seed_data.json.
 
-Idempotent — safe to run multiple times. Uses slug as the unique key for farms.
+Idempotent: running multiple times will not duplicate farms (matched by slug).
+For v0.2, also clears any farms whose slugs are no longer in seed_data.json
+so the trimmed list takes effect.
 """
-
 import json
 import sys
 from pathlib import Path
 
-# Ensure app package is importable when run as a script
+# Ensure the app package is importable
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from sqlalchemy import select  # noqa: E402
@@ -21,46 +22,60 @@ from app.models.farm import (  # noqa: E402
     FarmTip,
 )
 
-
 SEED_PATH_CANDIDATES = [
-    Path("/app/docs/seed_data.json"),  # docker-mounted location
+    Path("/app/docs/seed_data.json"),
     Path(__file__).resolve().parent.parent / "seed_data.json",
     Path(__file__).resolve().parent.parent.parent / "docs" / "seed_data.json",
 ]
 
 
 def find_seed_file() -> Path:
-    for path in SEED_PATH_CANDIDATES:
-        if path.exists():
-            return path
+    for p in SEED_PATH_CANDIDATES:
+        if p.exists():
+            return p
     raise FileNotFoundError(
         f"Could not find seed_data.json. Tried: {[str(p) for p in SEED_PATH_CANDIDATES]}"
     )
 
 
 def seed() -> None:
-    seed_path = find_seed_file()
-    print(f"Loading seed data from {seed_path}")
-    data = json.loads(seed_path.read_text())
+    seed_file = find_seed_file()
+    print(f"Loading seed data from {seed_file}")
+    data = json.loads(seed_file.read_text())
+
+    desired_slugs = {f["slug"] for f in data["farms"]}
 
     db = SessionLocal()
     try:
-        farms_added = 0
-        farms_skipped = 0
+        # Remove farms not in the current seed (e.g. trimmed in v0.2)
+        existing = db.execute(select(Farm)).scalars().all()
+        removed = 0
+        for farm in existing:
+            if farm.slug not in desired_slugs:
+                db.delete(farm)
+                removed += 1
+        if removed:
+            db.commit()
+            print(f"Removed {removed} farms no longer in seed list.")
 
-        for farm_data in data.get("farms", []):
-            slug = farm_data["slug"]
-
-            existing = db.scalar(select(Farm).where(Farm.slug == slug))
-            if existing:
-                farms_skipped += 1
+        added = 0
+        skipped = 0
+        for farm_data in data["farms"]:
+            existing_farm = db.execute(
+                select(Farm).where(Farm.slug == farm_data["slug"])
+            ).scalar_one_or_none()
+            if existing_farm:
+                # Update diet_profiles + best_for in place so v0.2 tags apply
+                existing_farm.diet_profiles = farm_data.get("diet_profiles", [])
+                existing_farm.best_for = farm_data.get("best_for")
+                skipped += 1
                 continue
 
             address = farm_data.get("address", {}) or {}
             contact = farm_data.get("contact", {}) or {}
 
             farm = Farm(
-                slug=slug,
+                slug=farm_data["slug"],
                 name=farm_data["name"],
                 alt_names=farm_data.get("alt_names"),
                 description=farm_data.get("description"),
@@ -76,9 +91,10 @@ def seed() -> None:
                 contact_person=contact.get("contact_person"),
                 verification_level=farm_data.get("verification_level", "unverified"),
                 verification_source=farm_data.get("verification_source"),
-                is_approved=True,  # seed entries are pre-approved
+                diet_profiles=farm_data.get("diet_profiles", []),
+                best_for=farm_data.get("best_for"),
+                is_approved=True,
             )
-
             for product in farm_data.get("products", []):
                 farm.products.append(
                     FarmProduct(
@@ -89,10 +105,8 @@ def seed() -> None:
                         unit=product.get("unit"),
                     )
                 )
-
             for method in farm_data.get("fulfillment_methods", []):
                 farm.fulfillment.append(FarmFulfillment(method=method))
-
             for tip in farm_data.get("tips", []):
                 farm.tips.append(
                     FarmTip(
@@ -101,7 +115,6 @@ def seed() -> None:
                         body=tip["body"],
                     )
                 )
-
             for cite in farm_data.get("citations", []):
                 farm.citations.append(
                     FarmCitation(
@@ -115,17 +128,20 @@ def seed() -> None:
                 )
 
             db.add(farm)
-            farms_added += 1
+            added += 1
 
         db.commit()
-        print(f"Done. Added {farms_added} farms, skipped {farms_skipped} (already present).")
-
-    except Exception:
+        print(f"Done. Added {added} farms, updated tags on {skipped} existing.")
+    except Exception as e:
         db.rollback()
+        print(f"Seed failed: {e}")
         raise
     finally:
         db.close()
 
 
 if __name__ == "__main__":
-    seed()
+    try:
+        seed()
+    except Exception as e:
+        print(f"Skipping seed: {e}")
