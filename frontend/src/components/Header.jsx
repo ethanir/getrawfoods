@@ -7,6 +7,7 @@ export default function Header() {
         <Link to="/" className="site-header__title">GetRawFoods</Link>
         <nav className="site-header__nav">
           <Link to="/">Directory</Link>
+          <Link to="/map">Map</Link>
           <Link to="/about">About</Link>
         </nav>
         <span className="site-header__tagline">

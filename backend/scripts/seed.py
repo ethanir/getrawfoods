@@ -4,6 +4,7 @@ Idempotent: running multiple times will not duplicate farms (matched by slug).
 For v0.2, also clears any farms whose slugs are no longer in seed_data.json
 so the trimmed list takes effect.
 """
+
 import json
 import sys
 from pathlib import Path
@@ -11,7 +12,7 @@ from pathlib import Path
 # Ensure the app package is importable
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from sqlalchemy import select  # noqa: E402
+from sqlalchemy import func, select  # noqa: E402
 
 from app.core.database import SessionLocal  # noqa: E402
 from app.models.farm import (  # noqa: E402
@@ -68,6 +69,11 @@ def seed() -> None:
                 # Update diet_profiles + best_for in place so v0.2 tags apply
                 existing_farm.diet_profiles = farm_data.get("diet_profiles", [])
                 existing_farm.best_for = farm_data.get("best_for")
+                coords = farm_data.get("coordinates")
+                if coords:
+                    existing_farm.location = func.ST_GeogFromText(
+                        f"POINT({coords['lng']} {coords['lat']})"
+                    )
                 skipped += 1
                 continue
 
@@ -95,6 +101,9 @@ def seed() -> None:
                 best_for=farm_data.get("best_for"),
                 is_approved=True,
             )
+            coords = farm_data.get("coordinates")
+            if coords:
+                farm.location = func.ST_GeogFromText(f"POINT({coords['lng']} {coords['lat']})")
             for product in farm_data.get("products", []):
                 farm.products.append(
                     FarmProduct(
