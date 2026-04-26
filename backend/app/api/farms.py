@@ -2,12 +2,13 @@
 from typing import List, Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query
-from sqlalchemy import select
+from geoalchemy2 import Geometry
+from sqlalchemy import cast, func, select
 from sqlalchemy.orm import Session, selectinload
 
 from app.core.database import get_db
 from app.models.farm import Farm
-from app.schemas.farm import FarmDetail, FarmListItem
+from app.schemas.farm import FarmDetail, FarmListItem, FarmMapPin
 
 router = APIRouter(prefix="/api/farms", tags=["farms"])
 
@@ -38,6 +39,34 @@ def list_farms(
         Farm.name.asc(),
     ).limit(limit).offset(offset)
     return list(db.execute(stmt).scalars().all())
+
+
+@router.get("/map", response_model=List[FarmMapPin])
+def list_farm_pins(
+    db: Session = Depends(get_db),
+    diet_profile: Optional[str] = Query(None),
+) -> List[FarmMapPin]:
+    """Lightweight farm pins for the map view.
+
+    Defined before /{slug} so FastAPI matches the literal path first;
+    otherwise the slug route would consume requests for /map.
+    """
+    geom = cast(Farm.location, Geometry)
+    stmt = select(
+        Farm.slug,
+        Farm.name,
+        func.ST_Y(geom).label("lat"),
+        func.ST_X(geom).label("lng"),
+        Farm.city,
+        Farm.state,
+        Farm.verification_level,
+        Farm.best_for,
+        Farm.diet_profiles,
+    ).where(Farm.location.is_not(None), Farm.status != "closed")
+    if diet_profile:
+        stmt = stmt.where(Farm.diet_profiles.contains([diet_profile]))
+    rows = db.execute(stmt).mappings().all()
+    return [FarmMapPin(**row) for row in rows]
 
 
 @router.get("/{slug}", response_model=FarmDetail)

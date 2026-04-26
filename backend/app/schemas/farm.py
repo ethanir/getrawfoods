@@ -58,6 +58,21 @@ class FarmListItem(BaseModel):
     best_for: Optional[str] = None
 
 
+class FarmMapPin(BaseModel):
+    """Lightweight payload for the map view — one pin per farm."""
+    model_config = ConfigDict(from_attributes=True)
+
+    slug: str
+    name: str
+    lat: float
+    lng: float
+    city: Optional[str] = None
+    state: Optional[str] = None
+    verification_level: str
+    best_for: Optional[str] = None
+    diet_profiles: List[str] = []
+
+
 class FarmDetail(BaseModel):
     """Full farm representation for the detail page."""
     model_config = ConfigDict(from_attributes=True)

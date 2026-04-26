@@ -489,3 +489,93 @@
   border-color: var(--color-muted);
   color: var(--color-muted);
 }
+
+/* ============================================================
+   Map page — Leaflet container, popup, legend overrides.
+   Sharp corners, hairline borders, no shadows (ADR 0002).
+   ============================================================ */
+
+.ph-map-wrap {
+  margin-top: 12px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.ph-map-wrap .leaflet-container {
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  background: var(--color-bg);
+}
+
+.ph-map-wrap .leaflet-bar,
+.ph-map-wrap .leaflet-bar a,
+.ph-map-wrap .leaflet-popup-content-wrapper,
+.ph-map-wrap .leaflet-popup-tip {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.ph-map-wrap .leaflet-bar a {
+  border: 1px solid var(--color-border);
+  color: var(--color-ink);
+  background: var(--color-surface);
+}
+
+.ph-map-wrap .leaflet-popup-content-wrapper {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-ink);
+}
+
+.ph-map-wrap .leaflet-popup-content {
+  margin: 10px 12px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.ph-map-wrap .leaflet-popup-tip {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+
+.ph-map-popup .ph-farm-name {
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
+.ph-map-popup__meta {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.ph-map-popup__location {
+  margin-top: 4px;
+  color: var(--color-muted);
+  font-size: 12px;
+}
+
+.ph-map-legend {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 10px 0;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--color-muted);
+  letter-spacing: 0.02em;
+}
+
+.ph-map-legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ph-map-legend__dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}

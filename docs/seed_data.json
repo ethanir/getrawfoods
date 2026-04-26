@@ -1,11 +1,14 @@
 {
-  "version": "0.2",
+  "version": "0.3",
   "notes": "Curated set of 6 verified farms covering meat/organs, dairy, oysters, and wild fish. Each farm tagged with the diet profiles it serves and a short 'best for' label.",
   "farms": [
     {
       "slug": "millers-organic-farm",
       "name": "Miller's Organic Farm",
-      "alt_names": ["Miller Farm", "Amos Miller's"],
+      "alt_names": [
+        "Miller Farm",
+        "Amos Miller's"
+      ],
       "description": "Direct Aajonus-lineage Amish farm in Pennsylvania. The only farm appearing in every category of Aajonus's official sourcing list. Known for A2/A2 raw dairy, no-salt cheeses made with homemade rennet, grass-fed/pastured meats, organs, and exotic dairy (water buffalo, camel). Members-only herd-share for legal reasons; ships nationwide via private membership.",
       "address": {
         "street": "648 Mill Creek School Rd",
@@ -20,30 +23,81 @@
       },
       "verification_level": "aajonus_verified",
       "verification_source": "Listed in Aajonus Vonderplanitz's official sourcing materials across every category (dairy, meat, organs).",
-      "diet_profiles": ["raw_carnivore", "aajonus_primal", "weston_a_price"],
+      "diet_profiles": [
+        "raw_carnivore",
+        "aajonus_primal",
+        "weston_a_price"
+      ],
       "best_for": "everything",
       "products": [
-        {"type": "raw_milk", "notes": "A2/A2 cow, goat, water buffalo, and camel options.", "unit": "half-gallon"},
-        {"type": "raw_butter", "notes": "Cultured and sweet cream butter.", "unit": "lb"},
-        {"type": "raw_cheese", "notes": "No-salt cheeses made with homemade rennet to Aajonus's specifications.", "unit": "lb"},
-        {"type": "grass_fed_meat", "notes": "Beef, lamb, pork, chicken — pastured.", "unit": "lb"},
-        {"type": "organ_meats", "notes": "Liver, heart, kidney, sweetbreads available on request.", "unit": "lb"},
-        {"type": "raw_eggs", "notes": "Pastured chicken and duck eggs.", "unit": "dozen"}
+        {
+          "type": "raw_milk",
+          "notes": "A2/A2 cow, goat, water buffalo, and camel options.",
+          "unit": "half-gallon"
+        },
+        {
+          "type": "raw_butter",
+          "notes": "Cultured and sweet cream butter.",
+          "unit": "lb"
+        },
+        {
+          "type": "raw_cheese",
+          "notes": "No-salt cheeses made with homemade rennet to Aajonus's specifications.",
+          "unit": "lb"
+        },
+        {
+          "type": "grass_fed_meat",
+          "notes": "Beef, lamb, pork, chicken \u2014 pastured.",
+          "unit": "lb"
+        },
+        {
+          "type": "organ_meats",
+          "notes": "Liver, heart, kidney, sweetbreads available on request.",
+          "unit": "lb"
+        },
+        {
+          "type": "raw_eggs",
+          "notes": "Pastured chicken and duck eggs.",
+          "unit": "dozen"
+        }
       ],
-      "fulfillment_methods": ["herd_share", "ships_nationwide", "in_person"],
+      "fulfillment_methods": [
+        "herd_share",
+        "ships_nationwide",
+        "in_person"
+      ],
       "tips": [
-        {"type": "phone_script", "title": "How to order", "body": "Call the farm directly. Membership signup happens by phone — they will guide you through the herd-share agreement. Once you're a member, place orders via phone or their members-only portal."},
-        {"type": "insider", "title": "Why members-only", "body": "Direct raw-milk sales across state lines are heavily restricted. The herd-share model means you technically own a share of the herd, which is legal in all 50 states."}
+        {
+          "type": "phone_script",
+          "title": "How to order",
+          "body": "Call the farm directly. Membership signup happens by phone \u2014 they will guide you through the herd-share agreement. Once you're a member, place orders via phone or their members-only portal."
+        },
+        {
+          "type": "insider",
+          "title": "Why members-only",
+          "body": "Direct raw-milk sales across state lines are heavily restricted. The herd-share model means you technically own a share of the herd, which is legal in all 50 states."
+        }
       ],
       "citations": [
-        {"source_type": "website", "source_name": "aajonus.net", "source_url": "https://aajonus.net", "verified": true}
-      ]
+        {
+          "source_type": "website",
+          "source_name": "aajonus.net",
+          "source_url": "https://aajonus.net",
+          "verified": true
+        }
+      ],
+      "coordinates": {
+        "lat": 40.0367,
+        "lng": -76.1789
+      }
     },
     {
       "slug": "mark-nolt-farm",
       "name": "Mark Nolt Farm",
-      "alt_names": ["Nolt Farm"],
-      "description": "Old-school Amish farm in Newville, PA. No website — phone-only ordering. Aajonus personally praised this farm in his sourcing materials. Best as a backup option when Miller's is sold out, especially for raw dairy and pastured meats.",
+      "alt_names": [
+        "Nolt Farm"
+      ],
+      "description": "Old-school Amish farm in Newville, PA. No website \u2014 phone-only ordering. Aajonus personally praised this farm in his sourcing materials. Best as a backup option when Miller's is sold out, especially for raw dairy and pastured meats.",
       "address": {
         "city": "Newville",
         "state": "PA",
@@ -54,23 +108,64 @@
       },
       "verification_level": "aajonus_verified",
       "verification_source": "Named in Aajonus Vonderplanitz's published sourcing recommendations.",
-      "diet_profiles": ["raw_carnivore", "aajonus_primal", "weston_a_price"],
+      "diet_profiles": [
+        "raw_carnivore",
+        "aajonus_primal",
+        "weston_a_price"
+      ],
       "best_for": "PA backup",
       "products": [
-        {"type": "raw_milk", "notes": "Cow's milk, grass-fed.", "unit": "half-gallon"},
-        {"type": "raw_butter", "unit": "lb"},
-        {"type": "raw_cheese", "unit": "lb"},
-        {"type": "grass_fed_meat", "notes": "Beef and lamb, pastured.", "unit": "lb"},
-        {"type": "raw_eggs", "unit": "dozen"}
+        {
+          "type": "raw_milk",
+          "notes": "Cow's milk, grass-fed.",
+          "unit": "half-gallon"
+        },
+        {
+          "type": "raw_butter",
+          "unit": "lb"
+        },
+        {
+          "type": "raw_cheese",
+          "unit": "lb"
+        },
+        {
+          "type": "grass_fed_meat",
+          "notes": "Beef and lamb, pastured.",
+          "unit": "lb"
+        },
+        {
+          "type": "raw_eggs",
+          "unit": "dozen"
+        }
       ],
-      "fulfillment_methods": ["in_person", "herd_share"],
+      "fulfillment_methods": [
+        "in_person",
+        "herd_share"
+      ],
       "tips": [
-        {"type": "phone_script", "title": "Phone-only ordering", "body": "No website, no online portal. Call during business hours. Be patient — they may take a message and call back."},
-        {"type": "warning", "title": "Pickup vs ship", "body": "Primarily a pickup farm. Shipping options are limited compared to Miller's."}
+        {
+          "type": "phone_script",
+          "title": "Phone-only ordering",
+          "body": "No website, no online portal. Call during business hours. Be patient \u2014 they may take a message and call back."
+        },
+        {
+          "type": "warning",
+          "title": "Pickup vs ship",
+          "body": "Primarily a pickup farm. Shipping options are limited compared to Miller's."
+        }
       ],
       "citations": [
-        {"source_type": "website", "source_name": "aajonus.net", "source_url": "https://aajonus.net", "verified": true}
-      ]
+        {
+          "source_type": "website",
+          "source_name": "aajonus.net",
+          "source_url": "https://aajonus.net",
+          "verified": true
+        }
+      ],
+      "coordinates": {
+        "lat": 40.1717,
+        "lng": -77.4011
+      }
     },
     {
       "slug": "northstar-bison",
@@ -87,23 +182,53 @@
       },
       "verification_level": "aajonus_verified",
       "verification_source": "Listed in Aajonus's meat sourcing materials.",
-      "diet_profiles": ["raw_carnivore", "aajonus_primal", "weston_a_price"],
+      "diet_profiles": [
+        "raw_carnivore",
+        "aajonus_primal",
+        "weston_a_price"
+      ],
       "best_for": "raw bison + organs",
       "products": [
-        {"type": "grass_fed_meat", "notes": "Bison cuts: ribeye, sirloin, ground, roasts.", "unit": "lb"},
-        {"type": "organ_meats", "notes": "Bison liver, heart, tongue, marrow bones, suet.", "unit": "lb"},
-        {"type": "wild_meat", "notes": "Elk and venison sometimes available seasonally.", "unit": "lb"}
+        {
+          "type": "grass_fed_meat",
+          "notes": "Bison cuts: ribeye, sirloin, ground, roasts.",
+          "unit": "lb"
+        },
+        {
+          "type": "organ_meats",
+          "notes": "Bison liver, heart, tongue, marrow bones, suet.",
+          "unit": "lb"
+        },
+        {
+          "type": "wild_meat",
+          "notes": "Elk and venison sometimes available seasonally.",
+          "unit": "lb"
+        }
       ],
-      "fulfillment_methods": ["ships_nationwide"],
+      "fulfillment_methods": [
+        "ships_nationwide"
+      ],
       "tips": [
-        {"type": "shipping", "title": "Order timing", "body": "Place orders before Monday morning to hit the Mon-Tue cut window. Wednesday shipments arrive Thursday in most US zones."},
-        {"type": "insider", "title": "Specify fresh", "body": "Default ship is fresh-never-frozen. Confirm at checkout — frozen is sometimes substituted for distant zones."}
-      ]
+        {
+          "type": "shipping",
+          "title": "Order timing",
+          "body": "Place orders before Monday morning to hit the Mon-Tue cut window. Wednesday shipments arrive Thursday in most US zones."
+        },
+        {
+          "type": "insider",
+          "title": "Specify fresh",
+          "body": "Default ship is fresh-never-frozen. Confirm at checkout \u2014 frozen is sometimes substituted for distant zones."
+        }
+      ],
+      "coordinates": {
+        "lat": 45.5061,
+        "lng": -91.7382
+      }
     },
     {
       "slug": "dutch-meadows-farm",
       "name": "Dutch Meadows Farm",
-      "description": "Pennsylvania Amish farm. Strongest #2 alternative to Miller's for A2/A2 dairy, kefir, ghee, and broths. Often has organ meats in stock when Miller's is sold out. Easier ordering process than Miller's — public website with online checkout.",
+      "description": "Pennsylvania Amish farm. Strongest #2 alternative to Miller's for A2/A2 dairy, kefir, ghee, and broths. Often has organ meats in stock when Miller's is sold out. Easier ordering process than Miller's \u2014 public website with online checkout.",
       "address": {
         "street": "694 Country Lane",
         "city": "Paradise",
@@ -117,20 +242,56 @@
       },
       "verification_level": "dev_recommended",
       "verification_source": "Personally vetted as a backup to Miller's. RAWMI-aligned standards, A2/A2 herd.",
-      "diet_profiles": ["raw_carnivore", "aajonus_primal", "weston_a_price"],
+      "diet_profiles": [
+        "raw_carnivore",
+        "aajonus_primal",
+        "weston_a_price"
+      ],
       "best_for": "dairy + organs backup",
       "products": [
-        {"type": "raw_milk", "notes": "A2/A2 cow's milk.", "unit": "half-gallon"},
-        {"type": "raw_butter", "unit": "lb"},
-        {"type": "raw_kefir", "unit": "quart"},
-        {"type": "organ_meats", "notes": "Beef liver, heart, kidney.", "unit": "lb"},
-        {"type": "grass_fed_meat", "unit": "lb"},
-        {"type": "raw_eggs", "unit": "dozen"}
+        {
+          "type": "raw_milk",
+          "notes": "A2/A2 cow's milk.",
+          "unit": "half-gallon"
+        },
+        {
+          "type": "raw_butter",
+          "unit": "lb"
+        },
+        {
+          "type": "raw_kefir",
+          "unit": "quart"
+        },
+        {
+          "type": "organ_meats",
+          "notes": "Beef liver, heart, kidney.",
+          "unit": "lb"
+        },
+        {
+          "type": "grass_fed_meat",
+          "unit": "lb"
+        },
+        {
+          "type": "raw_eggs",
+          "unit": "dozen"
+        }
       ],
-      "fulfillment_methods": ["ships_nationwide", "in_person", "herd_share"],
+      "fulfillment_methods": [
+        "ships_nationwide",
+        "in_person",
+        "herd_share"
+      ],
       "tips": [
-        {"type": "checkout_note", "title": "Easier than Miller's", "body": "Standard online checkout. No phone call required for first order. Shipping logistics are handled in-cart."}
-      ]
+        {
+          "type": "checkout_note",
+          "title": "Easier than Miller's",
+          "body": "Standard online checkout. No phone call required for first order. Shipping logistics are handled in-cart."
+        }
+      ],
+      "coordinates": {
+        "lat": 40.0078,
+        "lng": -76.1241
+      }
     },
     {
       "slug": "hama-hama-oysters",
@@ -147,21 +308,43 @@
       },
       "verification_level": "dev_recommended",
       "verification_source": "Personally vetted. Cold Hood Canal waters, family-run, transparent harvest practices.",
-      "diet_profiles": ["raw_carnivore", "aajonus_primal", "weston_a_price"],
+      "diet_profiles": [
+        "raw_carnivore",
+        "aajonus_primal",
+        "weston_a_price"
+      ],
       "best_for": "oysters",
       "products": [
-        {"type": "shellfish", "notes": "Live Pacific and Kumamoto oysters, manila clams, geoduck (seasonal).", "unit": "dozen / 100-count"}
+        {
+          "type": "shellfish",
+          "notes": "Live Pacific and Kumamoto oysters, manila clams, geoduck (seasonal).",
+          "unit": "dozen / 100-count"
+        }
       ],
-      "fulfillment_methods": ["ships_nationwide"],
+      "fulfillment_methods": [
+        "ships_nationwide"
+      ],
       "tips": [
-        {"type": "shipping", "title": "Order Mon-Wed", "body": "Order Mon-Wed for delivery Tue-Fri. They don't ship for weekend delivery (oysters sit too long)."},
-        {"type": "insider", "title": "Storage", "body": "Store flat-side-up in fridge with a damp towel over them. They'll keep 7-10 days alive."}
-      ]
+        {
+          "type": "shipping",
+          "title": "Order Mon-Wed",
+          "body": "Order Mon-Wed for delivery Tue-Fri. They don't ship for weekend delivery (oysters sit too long)."
+        },
+        {
+          "type": "insider",
+          "title": "Storage",
+          "body": "Store flat-side-up in fridge with a damp towel over them. They'll keep 7-10 days alive."
+        }
+      ],
+      "coordinates": {
+        "lat": 47.5403,
+        "lng": -123.0418
+      }
     },
     {
       "slug": "vital-choice",
       "name": "Vital Choice",
-      "description": "Wild Alaskan and Pacific seafood. Sablefish, salmon, halibut, sardines. Flash-frozen at sea. The most reliable nationwide source for high-fat wild cold-water fish — sablefish in particular is hard to find anywhere else and is a staple for raw carnivore eaters who want fish fat.",
+      "description": "Wild Alaskan and Pacific seafood. Sablefish, salmon, halibut, sardines. Flash-frozen at sea. The most reliable nationwide source for high-fat wild cold-water fish \u2014 sablefish in particular is hard to find anywhere else and is a staple for raw carnivore eaters who want fish fat.",
       "address": {
         "city": "Bellingham",
         "state": "WA",
@@ -173,17 +356,43 @@
       },
       "verification_level": "dev_recommended",
       "verification_source": "Personally vetted. Wild-only inventory, transparent sourcing, flash-frozen at sea.",
-      "diet_profiles": ["raw_carnivore", "aajonus_primal", "weston_a_price"],
+      "diet_profiles": [
+        "raw_carnivore",
+        "aajonus_primal",
+        "weston_a_price"
+      ],
       "best_for": "wild sablefish + salmon",
       "products": [
-        {"type": "wild_fish", "notes": "Sablefish, sockeye salmon, king salmon, halibut, cod.", "unit": "lb / portion"},
-        {"type": "shellfish", "notes": "Wild shrimp, scallops, occasional crab.", "unit": "lb"}
+        {
+          "type": "wild_fish",
+          "notes": "Sablefish, sockeye salmon, king salmon, halibut, cod.",
+          "unit": "lb / portion"
+        },
+        {
+          "type": "shellfish",
+          "notes": "Wild shrimp, scallops, occasional crab.",
+          "unit": "lb"
+        }
       ],
-      "fulfillment_methods": ["ships_nationwide"],
+      "fulfillment_methods": [
+        "ships_nationwide"
+      ],
       "tips": [
-        {"type": "checkout_note", "title": "Bulk savings", "body": "Bigger orders qualify for free shipping and bring per-pound cost down significantly. Sablefish in 5-lb increments is the sweet spot."},
-        {"type": "insider", "title": "Sablefish > everything", "body": "If you've never had wild sablefish, start there. Highest fat content of any wild fish, melts at room temp, eats well raw."}
-      ]
+        {
+          "type": "checkout_note",
+          "title": "Bulk savings",
+          "body": "Bigger orders qualify for free shipping and bring per-pound cost down significantly. Sablefish in 5-lb increments is the sweet spot."
+        },
+        {
+          "type": "insider",
+          "title": "Sablefish > everything",
+          "body": "If you've never had wild sablefish, start there. Highest fat content of any wild fish, melts at room temp, eats well raw."
+        }
+      ],
+      "coordinates": {
+        "lat": 48.7519,
+        "lng": -122.4787
+      }
     }
   ]
 }

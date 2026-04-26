@@ -22,3 +22,16 @@ export async function fetchFarm(slug) {
   if (!res.ok) throw new Error(`API ${res.status}`);
   return res.json();
 }
+
+export async function fetchFarmPins(params = {}) {
+  const query = new URLSearchParams();
+  for (const [key, value] of Object.entries(params)) {
+    if (value !== undefined && value !== null && value !== "") {
+      query.set(key, value);
+    }
+  }
+  const url = `${API_BASE}/api/farms/map${query.toString() ? "?" + query.toString() : ""}`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`API ${res.status}`);
+  return res.json();
+}
