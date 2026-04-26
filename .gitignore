@@ -47,3 +47,4 @@ db_data/
 # Build artifacts
 build/
 out/
+backend/seed_data.json
