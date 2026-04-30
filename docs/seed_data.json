@@ -1,12 +1,12 @@
 {
-  "version": "0.2",
-  "notes": "Curated set of 6 verified farms covering meat/organs, dairy, oysters, and wild fish. Each farm tagged with the diet profiles it serves and a short 'best for' label.",
+  "version": "0.4",
+  "notes": "Trimmed to 4 farms for v0.4 per ADR 0005. Farms now carry verification_levels (array, supports dual-verification) and categories (raw_dairy, raw_meat, raw_organs, oysters). Miller's is verified by both Aajonus and the maintainer. A farm is listed under a category only when verified for that category's products — Frankie's offers dairy on their site but is verified only for meat/organs.",
   "farms": [
     {
       "slug": "millers-organic-farm",
       "name": "Miller's Organic Farm",
       "alt_names": ["Miller Farm", "Amos Miller's"],
-      "description": "Direct Aajonus-lineage Amish farm in Pennsylvania. The only farm appearing in every category of Aajonus's official sourcing list. Known for A2/A2 raw dairy, no-salt cheeses made with homemade rennet, grass-fed/pastured meats, organs, and exotic dairy (water buffalo, camel). Members-only herd-share for legal reasons; ships nationwide via private membership.",
+      "description": "Direct Aajonus-lineage Amish farm in Pennsylvania. The only farm appearing in every category of Aajonus's official sourcing list. A2/A2 raw dairy, no-salt cheeses made with homemade rennet, grass-fed and pastured meats, organs, and exotic dairy (water buffalo, camel). Members-only herd-share for legal reasons; ships nationwide via private membership.",
       "address": {
         "street": "648 Mill Creek School Rd",
         "city": "Bird-in-Hand",
@@ -18,9 +18,10 @@
         "phone": "+1-717-556-0672",
         "website": "https://millersorganicfarm.com"
       },
-      "verification_level": "aajonus_verified",
-      "verification_source": "Listed in Aajonus Vonderplanitz's official sourcing materials across every category (dairy, meat, organs).",
+      "verification_levels": ["aajonus_verified", "dev_verified"],
+      "verification_source": "Listed in Aajonus Vonderplanitz's published sourcing materials across every category (dairy, meat, organs). Personally verified by the maintainer — orders from Miller's regularly.",
       "diet_profiles": ["raw_carnivore", "aajonus_primal", "weston_a_price"],
+      "categories": ["raw_dairy", "raw_meat", "raw_organs"],
       "best_for": "everything",
       "products": [
         {"type": "raw_milk", "notes": "A2/A2 cow, goat, water buffalo, and camel options.", "unit": "half-gallon"},
@@ -40,6 +41,29 @@
       ]
     },
     {
+      "slug": "frankies-free-range-meat",
+      "name": "Frankie's Free Range Meat",
+      "description": "Small-operation pasture-raised meat program. Stocks fresh organs intermittently and seasonal raw butter and unsalted cheese. Premium pricing. Personally verified by the maintainer for meat and organ orders. Confirm freshness at checkout.",
+      "contact": {
+        "website": "https://frankiesfreerangemeat.com",
+        "email": "info@frankiesfreerangemeat.com"
+      },
+      "verification_levels": ["dev_verified"],
+      "verification_source": "Personally verified by the maintainer — orders for meat and organs.",
+      "diet_profiles": ["raw_carnivore", "aajonus_primal", "weston_a_price"],
+      "categories": ["raw_meat", "raw_organs"],
+      "best_for": "fresh meat + intermittent organs",
+      "products": [
+        {"type": "grass_fed_meat", "notes": "Pasture-raised cuts and ground.", "unit": "lb"},
+        {"type": "organ_meats", "notes": "Fresh availability varies — call or email to confirm before ordering.", "unit": "lb"}
+      ],
+      "fulfillment_methods": ["ships_nationwide"],
+      "tips": [
+        {"type": "checkout_note", "title": "Specify fresh-never-frozen", "body": "Default ship may be frozen. Add a checkout note requesting fresh-never-frozen and confirm by email or phone before the order ships."}
+      ],
+      "citations": []
+    },
+    {
       "slug": "mark-nolt-farm",
       "name": "Mark Nolt Farm",
       "alt_names": ["Nolt Farm"],
@@ -52,9 +76,10 @@
       "contact": {
         "phone": "+1-717-776-7575"
       },
-      "verification_level": "aajonus_verified",
+      "verification_levels": ["aajonus_verified"],
       "verification_source": "Named in Aajonus Vonderplanitz's published sourcing recommendations.",
       "diet_profiles": ["raw_carnivore", "aajonus_primal", "weston_a_price"],
+      "categories": ["raw_dairy", "raw_meat"],
       "best_for": "PA backup",
       "products": [
         {"type": "raw_milk", "notes": "Cow's milk, grass-fed.", "unit": "half-gallon"},
@@ -85,9 +110,10 @@
         "phone": "+1-888-295-6332",
         "website": "https://northstarbison.com"
       },
-      "verification_level": "aajonus_verified",
+      "verification_levels": ["aajonus_verified"],
       "verification_source": "Listed in Aajonus's meat sourcing materials.",
       "diet_profiles": ["raw_carnivore", "aajonus_primal", "weston_a_price"],
+      "categories": ["raw_meat", "raw_organs"],
       "best_for": "raw bison + organs",
       "products": [
         {"type": "grass_fed_meat", "notes": "Bison cuts: ribeye, sirloin, ground, roasts.", "unit": "lb"},
@@ -98,91 +124,6 @@
       "tips": [
         {"type": "shipping", "title": "Order timing", "body": "Place orders before Monday morning to hit the Mon-Tue cut window. Wednesday shipments arrive Thursday in most US zones."},
         {"type": "insider", "title": "Specify fresh", "body": "Default ship is fresh-never-frozen. Confirm at checkout — frozen is sometimes substituted for distant zones."}
-      ]
-    },
-    {
-      "slug": "dutch-meadows-farm",
-      "name": "Dutch Meadows Farm",
-      "description": "Pennsylvania Amish farm. Strongest #2 alternative to Miller's for A2/A2 dairy, kefir, ghee, and broths. Often has organ meats in stock when Miller's is sold out. Easier ordering process than Miller's — public website with online checkout.",
-      "address": {
-        "street": "694 Country Lane",
-        "city": "Paradise",
-        "state": "PA",
-        "zip": "17562",
-        "country": "USA"
-      },
-      "contact": {
-        "phone": "+1-717-442-9208",
-        "website": "https://dutchmeadowsfarm.com"
-      },
-      "verification_level": "dev_recommended",
-      "verification_source": "Personally vetted as a backup to Miller's. RAWMI-aligned standards, A2/A2 herd.",
-      "diet_profiles": ["raw_carnivore", "aajonus_primal", "weston_a_price"],
-      "best_for": "dairy + organs backup",
-      "products": [
-        {"type": "raw_milk", "notes": "A2/A2 cow's milk.", "unit": "half-gallon"},
-        {"type": "raw_butter", "unit": "lb"},
-        {"type": "raw_kefir", "unit": "quart"},
-        {"type": "organ_meats", "notes": "Beef liver, heart, kidney.", "unit": "lb"},
-        {"type": "grass_fed_meat", "unit": "lb"},
-        {"type": "raw_eggs", "unit": "dozen"}
-      ],
-      "fulfillment_methods": ["ships_nationwide", "in_person", "herd_share"],
-      "tips": [
-        {"type": "checkout_note", "title": "Easier than Miller's", "body": "Standard online checkout. No phone call required for first order. Shipping logistics are handled in-cart."}
-      ]
-    },
-    {
-      "slug": "hama-hama-oysters",
-      "name": "Hama Hama Oyster Company",
-      "description": "Sixth-generation family-run shellfish farm on Washington's Olympic Peninsula at the mouth of the Hama Hama River. Hood Canal waters are among the cleanest cold-water oyster regions in North America. Ships live oysters overnight nationwide. The default oyster pick for raw eaters in the lower 48.",
-      "address": {
-        "city": "Lilliwaup",
-        "state": "WA",
-        "country": "USA"
-      },
-      "contact": {
-        "phone": "+1-360-877-5811",
-        "website": "https://hamahamaoysters.com"
-      },
-      "verification_level": "dev_recommended",
-      "verification_source": "Personally vetted. Cold Hood Canal waters, family-run, transparent harvest practices.",
-      "diet_profiles": ["raw_carnivore", "aajonus_primal", "weston_a_price"],
-      "best_for": "oysters",
-      "products": [
-        {"type": "shellfish", "notes": "Live Pacific and Kumamoto oysters, manila clams, geoduck (seasonal).", "unit": "dozen / 100-count"}
-      ],
-      "fulfillment_methods": ["ships_nationwide"],
-      "tips": [
-        {"type": "shipping", "title": "Order Mon-Wed", "body": "Order Mon-Wed for delivery Tue-Fri. They don't ship for weekend delivery (oysters sit too long)."},
-        {"type": "insider", "title": "Storage", "body": "Store flat-side-up in fridge with a damp towel over them. They'll keep 7-10 days alive."}
-      ]
-    },
-    {
-      "slug": "vital-choice",
-      "name": "Vital Choice",
-      "description": "Wild Alaskan and Pacific seafood. Sablefish, salmon, halibut, sardines. Flash-frozen at sea. The most reliable nationwide source for high-fat wild cold-water fish — sablefish in particular is hard to find anywhere else and is a staple for raw carnivore eaters who want fish fat.",
-      "address": {
-        "city": "Bellingham",
-        "state": "WA",
-        "country": "USA"
-      },
-      "contact": {
-        "website": "https://vitalchoice.com",
-        "phone": "+1-800-608-4825"
-      },
-      "verification_level": "dev_recommended",
-      "verification_source": "Personally vetted. Wild-only inventory, transparent sourcing, flash-frozen at sea.",
-      "diet_profiles": ["raw_carnivore", "aajonus_primal", "weston_a_price"],
-      "best_for": "wild sablefish + salmon",
-      "products": [
-        {"type": "wild_fish", "notes": "Sablefish, sockeye salmon, king salmon, halibut, cod.", "unit": "lb / portion"},
-        {"type": "shellfish", "notes": "Wild shrimp, scallops, occasional crab.", "unit": "lb"}
-      ],
-      "fulfillment_methods": ["ships_nationwide"],
-      "tips": [
-        {"type": "checkout_note", "title": "Bulk savings", "body": "Bigger orders qualify for free shipping and bring per-pound cost down significantly. Sablefish in 5-lb increments is the sweet spot."},
-        {"type": "insider", "title": "Sablefish > everything", "body": "If you've never had wild sablefish, start there. Highest fat content of any wild fish, melts at room temp, eats well raw."}
       ]
     }
   ]

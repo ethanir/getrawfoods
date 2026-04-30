@@ -1,7 +1,7 @@
 """Seed the database from docs/seed_data.json.
 
 Idempotent: running multiple times will not duplicate farms (matched by slug).
-For v0.2, also clears any farms whose slugs are no longer in seed_data.json
+For v0.4, also clears any farms whose slugs are no longer in seed_data.json
 so the trimmed list takes effect.
 """
 import json
@@ -47,7 +47,7 @@ def seed() -> None:
 
     db = SessionLocal()
     try:
-        # Remove farms not in the current seed (e.g. trimmed in v0.2)
+        # Remove farms not in the current seed (e.g. trimmed in v0.4)
         existing = db.execute(select(Farm)).scalars().all()
         removed = 0
         for farm in existing:
@@ -59,16 +59,24 @@ def seed() -> None:
             print(f"Removed {removed} farms no longer in seed list.")
 
         added = 0
-        skipped = 0
+        updated = 0
         for farm_data in data["farms"]:
             existing_farm = db.execute(
                 select(Farm).where(Farm.slug == farm_data["slug"])
             ).scalar_one_or_none()
             if existing_farm:
-                # Update diet_profiles + best_for in place so v0.2 tags apply
+                # Update v0.4 array fields in place so re-seed applies new tags
+                existing_farm.verification_levels = farm_data.get(
+                    "verification_levels", []
+                )
                 existing_farm.diet_profiles = farm_data.get("diet_profiles", [])
+                existing_farm.categories = farm_data.get("categories", [])
                 existing_farm.best_for = farm_data.get("best_for")
-                skipped += 1
+                if farm_data.get("verification_source"):
+                    existing_farm.verification_source = farm_data["verification_source"]
+                if farm_data.get("description"):
+                    existing_farm.description = farm_data["description"]
+                updated += 1
                 continue
 
             address = farm_data.get("address", {}) or {}
@@ -89,9 +97,10 @@ def seed() -> None:
                 email=contact.get("email"),
                 support_email=contact.get("support_email"),
                 contact_person=contact.get("contact_person"),
-                verification_level=farm_data.get("verification_level", "unverified"),
+                verification_levels=farm_data.get("verification_levels", []),
                 verification_source=farm_data.get("verification_source"),
                 diet_profiles=farm_data.get("diet_profiles", []),
+                categories=farm_data.get("categories", []),
                 best_for=farm_data.get("best_for"),
                 is_approved=True,
             )
@@ -131,7 +140,7 @@ def seed() -> None:
             added += 1
 
         db.commit()
-        print(f"Done. Added {added} farms, updated tags on {skipped} existing.")
+        print(f"Done. Added {added} farms, updated {updated} existing.")
     except Exception as e:
         db.rollback()
         print(f"Seed failed: {e}")
