@@ -52,9 +52,10 @@ class FarmListItem(BaseModel):
     city: Optional[str] = None
     state: Optional[str] = None
     country: str = "USA"
-    verification_level: str
+    verification_levels: List[str] = []
     status: str
     diet_profiles: List[str] = []
+    categories: List[str] = []
     best_for: Optional[str] = None
 
 
@@ -78,9 +79,10 @@ class FarmDetail(BaseModel):
     support_email: Optional[str] = None
     contact_person: Optional[str] = None
     status: str
-    verification_level: str
+    verification_levels: List[str] = []
     verification_source: Optional[str] = None
     diet_profiles: List[str] = []
+    categories: List[str] = []
     best_for: Optional[str] = None
     is_approved: bool
     created_at: datetime

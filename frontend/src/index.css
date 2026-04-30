@@ -1,6 +1,7 @@
 /* ============================================================
-   Design tokens — see docs/decisions/0002-aesthetic.md
-   Utilitarian / reference-document aesthetic.
+   Design tokens — see docs/decisions/0005-aesthetic-and-categories.md
+   Refined minimalism: cream + oxblood, IBM Plex stack, generous
+   breathing room, mono small-caps for category section labels.
    ============================================================ */
 
 @tailwind base;
@@ -8,87 +9,99 @@
 @tailwind utilities;
 
 :root {
-  --color-bg: #faf8f5;          /* off-white, warm */
-  --color-surface: #ffffff;     /* pure white for inset panels */
-  --color-ink: #1a1a1a;         /* near-black body text */
-  --color-muted: #6b6b6b;       /* secondary text */
-  --color-accent: #6b1f1f;      /* deep oxblood — links, key badges */
-  --color-accent-ink: #ffffff;  /* on-accent text */
-  --color-border: #d8d2c8;      /* hairline borders */
-  --color-warning: #8a4a00;     /* warnings — burnt orange */
-  --color-good: #2d5a3d;        /* success / verified — forest */
+  /* Palette */
+  --color-bg: #f5f0e5;          /* warm cream */
+  --color-surface: #fbf8f1;     /* slightly lighter for inset panels */
+  --color-ink: #1f1a15;         /* warm dark text */
+  --color-muted: #6b6358;       /* warm secondary text */
+  --color-accent: #6b1f1f;      /* oxblood — links, key badges */
+  --color-accent-ink: #f5f0e5;  /* on-accent text */
+  --color-border: #e0d9cc;      /* warm hairline */
+  --color-warning: #8a4a00;     /* burnt orange */
+  --color-good: #2d5a3d;        /* forest, used for dev-verified */
+
+  /* Type stack */
+  --font-sans: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  --font-serif: 'IBM Plex Serif', Georgia, ui-serif, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+
+  /* Layout */
+  --max-content: 880px;
 }
 
 @layer base {
   html {
-    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-family: var(--font-sans);
     color: var(--color-ink);
     background: var(--color-bg);
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   body {
     margin: 0;
-    line-height: 1.5;
+    line-height: 1.65;
+    font-size: 15px;
   }
 
-  /* Underlined links by default — old-internet honesty. */
   a {
     color: var(--color-accent);
     text-decoration: underline;
     text-decoration-thickness: 1px;
-    text-underline-offset: 2px;
+    text-underline-offset: 3px;
   }
   a:hover {
     text-decoration-thickness: 2px;
   }
 
   h1, h2, h3, h4 {
-    font-family: 'IBM Plex Serif', Georgia, serif;
-    font-weight: 600;
+    font-family: var(--font-serif);
+    font-weight: 500;
     line-height: 1.2;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
+    color: var(--color-ink);
+    margin: 0;
   }
 
-  h1 { font-size: 1.75rem; }
-  h2 { font-size: 1.375rem; margin-top: 2rem; }
-  h3 { font-size: 1.125rem; margin-top: 1.5rem; }
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.375rem; }
+  h3 { font-size: 1.125rem; }
 
-  /* Inline code / monospace bits. */
   code, kbd, pre, .mono {
-    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-family: var(--font-mono);
     font-size: 0.9em;
   }
 }
 
 @layer components {
-  /* Page wrapper used across most routes. */
+  /* ── Page wrapper ─────────────────────────────────────────────── */
   .page {
-    max-width: var(--max-content, 1100px);
+    max-width: var(--max-content);
     margin: 0 auto;
-    padding: 1.5rem 1.25rem 4rem;
+    padding: 2rem 1.5rem 4rem;
   }
 
-  /* Site header. */
+  /* ── Site header ──────────────────────────────────────────────── */
   .site-header {
     border-bottom: 1px solid var(--color-border);
-    background: var(--color-surface);
+    background: var(--color-bg);
   }
   .site-header__inner {
-    max-width: 1100px;
+    max-width: var(--max-content);
     margin: 0 auto;
-    padding: 1rem 1.25rem;
+    padding: 1.125rem 1.5rem;
     display: flex;
     align-items: baseline;
-    gap: 1.5rem;
+    gap: 1.75rem;
     flex-wrap: wrap;
   }
   .site-header__title {
-    font-family: 'IBM Plex Serif', Georgia, serif;
-    font-weight: 700;
+    font-family: var(--font-serif);
+    font-weight: 500;
     font-size: 1.25rem;
     color: var(--color-ink);
     text-decoration: none;
+    letter-spacing: -0.01em;
   }
   .site-header__title:hover {
     text-decoration: underline;
@@ -100,6 +113,10 @@
   }
   .site-header__nav a {
     color: var(--color-ink);
+    text-decoration: none;
+  }
+  .site-header__nav a:hover {
+    text-decoration: underline;
   }
   .site-header__tagline {
     margin-left: auto;
@@ -108,130 +125,143 @@
     font-style: italic;
   }
 
-  /* Verification badges. */
+  /* ── Page intro ───────────────────────────────────────────────── */
+  .page-intro {
+    margin: 0 0 2.5rem;
+  }
+  .page-intro__title {
+    margin: 0 0 0.5rem;
+  }
+  .page-intro__desc {
+    color: var(--color-muted);
+    font-size: 0.975rem;
+    max-width: 60ch;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── Category section ─────────────────────────────────────────── */
+  .section {
+    margin: 0 0 2.75rem;
+  }
+  .section__label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    padding: 0 0 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+    margin: 0 0 0.25rem;
+  }
+  .section__empty {
+    padding: 1.25rem 0;
+    color: var(--color-muted);
+    font-style: italic;
+    font-size: 0.95rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  /* ── Farm row ─────────────────────────────────────────────────── */
+  .farm-row {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .farm-row:last-child {
+    border-bottom: none;
+  }
+  .farm-row__head {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.625rem;
+    margin-bottom: 0.375rem;
+  }
+  .farm-row__name {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    letter-spacing: -0.01em;
+  }
+  .farm-row__name:hover {
+    text-decoration-thickness: 2px;
+  }
+  .farm-row__location {
+    color: var(--color-muted);
+    font-size: 0.875rem;
+  }
+  .farm-row__badges {
+    display: inline-flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+  .farm-row__desc {
+    margin: 0;
+    color: var(--color-ink);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    max-width: 70ch;
+  }
+
+  /* ── Verification badge ───────────────────────────────────────── */
   .badge {
     display: inline-block;
-    font-family: 'IBM Plex Mono', ui-monospace, monospace;
-    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     padding: 1px 6px;
     border: 1px solid currentColor;
-    line-height: 1.4;
-    vertical-align: middle;
+    line-height: 1.5;
+    vertical-align: baseline;
+    white-space: nowrap;
   }
-  .badge--aajonus {
-    color: var(--color-accent);
-  }
-  .badge--dev {
-    color: var(--color-good);
-  }
-  .badge--community {
-    color: var(--color-muted);
-  }
-  .badge--unverified {
-    color: var(--color-muted);
-    opacity: 0.7;
-  }
+  .badge--aajonus_verified { color: var(--color-accent); }
+  .badge--dev_verified { color: var(--color-good); }
+  .badge--community_verified { color: var(--color-muted); }
+  .badge--unverified { color: var(--color-muted); opacity: 0.7; }
 
-  /* Farm row — used in directory list. */
-  .farm-row {
-    display: block;
-    padding: 0.875rem 0;
-    border-bottom: 1px solid var(--color-border);
-    text-decoration: none;
-    color: inherit;
-  }
-  .farm-row:hover {
-    background: rgba(107, 31, 31, 0.03);
-    text-decoration: none;
-  }
-  .farm-row__head {
+  /* ── Farm detail page ─────────────────────────────────────────── */
+  .farm-detail__head {
     display: flex;
     align-items: baseline;
-    gap: 0.625rem;
     flex-wrap: wrap;
+    gap: 0.5rem 0.75rem;
+    margin: 0.25rem 0 1rem;
   }
-  .farm-row__name {
-    font-family: 'IBM Plex Serif', Georgia, serif;
-    font-weight: 600;
-    font-size: 1.05rem;
-    color: var(--color-accent);
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 2px;
-  }
-  .farm-row__location {
+  .farm-detail__source {
+    margin: 0.5rem 0 0;
+    font-size: 0.875rem;
     color: var(--color-muted);
-    font-size: 0.9rem;
+    font-style: italic;
+    max-width: 65ch;
   }
-  .farm-row__desc {
-    margin-top: 0.25rem;
-    color: var(--color-ink);
+
+  .definition-list {
+    display: grid;
+    grid-template-columns: 8rem 1fr;
+    gap: 0.375rem 1rem;
     font-size: 0.95rem;
-    line-height: 1.45;
+    margin: 0.5rem 0 0;
   }
-  .farm-row__meta {
-    margin-top: 0.375rem;
-    color: var(--color-muted);
-    font-family: 'IBM Plex Mono', ui-monospace, monospace;
-    font-size: 0.78rem;
-  }
-
-  /* Filter bar. */
-  .filter-bar {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    padding: 0.875rem 0;
-    border-bottom: 1px solid var(--color-border);
-    margin-bottom: 0.5rem;
-  }
-  .filter-bar select,
-  .filter-bar input {
-    font: inherit;
-    padding: 0.375rem 0.5rem;
-    border: 1px solid var(--color-border);
-    background: var(--color-surface);
-    color: var(--color-ink);
-  }
-  .filter-bar input:focus,
-  .filter-bar select:focus {
-    outline: 2px solid var(--color-accent);
-    outline-offset: -1px;
-  }
-
-  /* Tip blocks on farm detail page. */
-  .tip {
-    border-left: 3px solid var(--color-border);
-    padding: 0.5rem 0.875rem;
-    margin: 0.625rem 0;
-    background: var(--color-surface);
-  }
-  .tip--warning {
-    border-left-color: var(--color-warning);
-  }
-  .tip--insider {
-    border-left-color: var(--color-accent);
-  }
-  .tip__type {
-    font-family: 'IBM Plex Mono', ui-monospace, monospace;
-    font-size: 0.7rem;
+  .definition-list dt {
+    font-family: var(--font-mono);
+    font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
     color: var(--color-muted);
+    padding-top: 2px;
   }
-  .tip__title {
-    font-weight: 600;
-    margin: 0.125rem 0 0.25rem;
-  }
-  .tip__body {
-    font-size: 0.95rem;
-    line-height: 1.5;
+  .definition-list dd {
+    margin: 0;
   }
 
-  /* Product table on farm detail. */
   .product-table {
     width: 100%;
     border-collapse: collapse;
@@ -240,252 +270,51 @@
   .product-table th,
   .product-table td {
     text-align: left;
-    padding: 0.5rem 0.75rem 0.5rem 0;
+    padding: 0.625rem 0.875rem 0.625rem 0;
     border-bottom: 1px solid var(--color-border);
     vertical-align: top;
   }
   .product-table th {
-    font-family: 'IBM Plex Mono', ui-monospace, monospace;
-    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
     color: var(--color-muted);
     font-weight: 500;
   }
 
-  .definition-list {
-    display: grid;
-    grid-template-columns: 8rem 1fr;
-    gap: 0.25rem 1rem;
-    font-size: 0.95rem;
+  .tip {
+    border-left: 3px solid var(--color-border);
+    padding: 0.625rem 1rem;
+    margin: 0.75rem 0;
+    background: var(--color-surface);
   }
-  .definition-list dt {
-    font-family: 'IBM Plex Mono', ui-monospace, monospace;
-    font-size: 0.78rem;
+  .tip--warning { border-left-color: var(--color-warning); }
+  .tip--insider { border-left-color: var(--color-accent); }
+  .tip__type {
+    font-family: var(--font-mono);
+    font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
     color: var(--color-muted);
-    padding-top: 0.1rem;
+  }
+  .tip__title {
+    font-weight: 500;
+    margin: 0.125rem 0 0.25rem;
+  }
+  .tip__body {
+    font-size: 0.95rem;
+    line-height: 1.55;
   }
 }
 
-/* Footer */
+/* ── Site footer ────────────────────────────────────────────────── */
 .site-footer {
   border-top: 1px solid var(--color-border);
-  margin-top: 3rem;
-  padding: 1.25rem;
-  font-size: 0.82rem;
+  margin-top: 4rem;
+  padding: 1.5rem;
+  font-size: 0.825rem;
   color: var(--color-muted);
   text-align: center;
-}
-/* ============================================================
-   v0.2 additions: diet profile pills, best-for tags, tooltips
-   ============================================================ */
-
-.ph-profile-pills {
-  display: flex;
-  gap: 6px;
-  margin: 0 0 10px 0;
-  flex-wrap: wrap;
-}
-
-.ph-profile-pill {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  padding: 5px 11px;
-  background: transparent;
-  border: 1px solid var(--color-border);
-  color: var(--color-ink);
-  cursor: pointer;
-  transition: none;
-}
-
-.ph-profile-pill:hover {
-  background: var(--color-surface);
-}
-
-.ph-profile-pill.is-active {
-  background: var(--color-accent);
-  border-color: var(--color-accent);
-  color: var(--color-bg);
-}
-
-.ph-best-for {
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  padding: 1px 6px;
-  border: 1px solid var(--color-muted);
-  color: var(--color-muted);
-  cursor: help;
-}
-
-.ph-badge[title] {
-  cursor: help;
-}
-
-.ph-empty {
-  padding: 14px 0;
-  color: var(--color-muted);
-  font-size: 13px;
-}
-
-.ph-error {
-  padding: 10px 12px;
-  margin: 10px 0;
-  border: 1px solid var(--color-accent);
-  background: var(--color-surface);
-  color: var(--color-accent);
-  font-size: 13px;
-  font-family: var(--font-mono);
-}
-
-/* ============================================================
-   Layout primitives — referenced by Home.jsx, FarmRow.jsx, etc.
-   ============================================================ */
-
-.ph-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 24px 32px 48px;
-}
-
-.ph-page-header {
-  margin-bottom: 18px;
-}
-
-.ph-page-title {
-  font-family: var(--font-serif);
-  font-weight: 600;
-  font-size: 28px;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  margin: 0 0 6px;
-  color: var(--color-ink);
-}
-
-.ph-page-subtitle {
-  margin: 0;
-  color: var(--color-muted);
-  font-size: 14px;
-  line-height: 1.5;
-  max-width: 70ch;
-}
-
-.ph-filter-bar {
-  display: flex;
-  gap: 12px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--color-border);
-  margin-bottom: 8px;
-  flex-wrap: wrap;
-}
-
-.ph-input,
-.ph-select {
-  font: inherit;
-  font-size: 13px;
-  background: #ffffff;
-  border: 1px solid var(--color-border);
-  padding: 6px 10px;
-  color: var(--color-ink);
-  border-radius: 0;
-  outline: none;
-}
-
-.ph-input {
-  flex: 1;
-  min-width: 200px;
-}
-
-.ph-input:focus,
-.ph-select:focus {
-  border-color: var(--color-accent);
-}
-
-.ph-result-count {
-  color: var(--color-muted);
-  font-size: 11px;
-  font-family: var(--font-mono);
-  letter-spacing: 0.02em;
-  padding: 8px 0;
-}
-
-.ph-farm-row {
-  border-bottom: 1px solid var(--color-border);
-  padding: 14px 0;
-}
-
-.ph-farm-row:last-child {
-  border-bottom: none;
-}
-
-.ph-farm-row-header {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 4px;
-}
-
-.ph-farm-name {
-  font-family: var(--font-serif);
-  font-weight: 600;
-  font-size: 16px;
-  color: var(--color-accent);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.ph-farm-name:hover {
-  text-decoration: none;
-}
-
-.ph-farm-location {
-  color: var(--color-muted);
-  font-size: 13px;
-}
-
-.ph-farm-description {
-  margin: 4px 0 0;
-  font-size: 13.5px;
-  line-height: 1.5;
-  color: var(--color-ink);
-  max-width: 80ch;
-}
-
-.ph-badge {
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  padding: 1px 6px;
-  border: 1px solid var(--color-accent);
-  color: var(--color-accent);
-  white-space: nowrap;
-}
-
-.ph-badge-aajonus_verified {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
-}
-
-.ph-badge-dev_recommended {
-  border-color: #2d5a3d;
-  color: #2d5a3d;
-}
-
-.ph-badge-community_verified {
-  border-color: #5a4a2d;
-  color: #5a4a2d;
-}
-
-.ph-badge-unverified {
-  border-color: var(--color-muted);
-  color: var(--color-muted);
+  line-height: 1.55;
 }
