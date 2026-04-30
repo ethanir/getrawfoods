@@ -1,6 +1,6 @@
 """Farm-related ORM models.
 
-The schema is defined in the migration file; these classes mirror it for
+The schema is defined in the migration files; these classes mirror them for
 the ORM. Keep them in sync — when changing one, change the other.
 """
 
@@ -10,7 +10,6 @@ from datetime import datetime
 from geoalchemy2 import Geography
 from sqlalchemy import (
     Boolean,
-    CheckConstraint,
     DateTime,
     ForeignKey,
     Integer,
@@ -55,12 +54,14 @@ class Farm(Base):
 
     # Status & verification
     status: Mapped[str] = mapped_column(String(20), nullable=False, server_default="active")
-    verification_level: Mapped[str] = mapped_column(
-        String(20), nullable=False, server_default="unverified", index=True
+    verification_levels: Mapped[list] = mapped_column(
+        JSONB, nullable=False, server_default="[]"
     )
     verification_source: Mapped[str | None] = mapped_column(Text, nullable=True)
 
+    # Navigation
     diet_profiles: Mapped[list] = mapped_column(JSONB, nullable=False, server_default="[]")
+    categories: Mapped[list] = mapped_column(JSONB, nullable=False, server_default="[]")
     best_for: Mapped[str | None] = mapped_column(String(80), nullable=True)
 
     # Submission
