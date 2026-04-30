@@ -8,11 +8,31 @@ The aim is one place where someone new to raw eating can find verified farms, se
 
 ## Repository
 
-- `backend/` — FastAPI + SQLAlchemy + Postgres API. *Not yet scaffolded.*
+- `backend/` — FastAPI + SQLAlchemy + Postgres API.
 - `frontend/` — React + Vite + Tailwind UI. *Not yet scaffolded.*
 - `docs/` — Architecture overview, ADRs, schema reference.
 
-For the engineering overview, see [`ARCHITECTURE.md`](./ARCHITECTURE.md). For decisions and their reasoning, see [`docs/adr/`](./docs/adr/). For repo conventions, see [`CONTRIBUTING.md`](./CONTRIBUTING.md).
+For the engineering overview, see [`ARCHITECTURE.md`](./ARCHITECTURE.md). For decisions and their reasoning, see [`docs/adr/`](./docs/adr/). For the database schema, see [`docs/schema.md`](./docs/schema.md). For repo conventions, see [`CONTRIBUTING.md`](./CONTRIBUTING.md).
+
+## Local development
+
+Requires Docker. First-time setup:
+
+```
+docker compose up -d
+docker compose exec backend alembic upgrade head
+docker compose exec backend python -m app.seed.seed
+```
+
+The API is then live at `http://localhost:8000`, with interactive docs at `http://localhost:8000/docs` and a health check at `http://localhost:8000/api/health`. After the first setup, `docker compose up -d` is enough.
+
+To run the test suite:
+
+```
+docker compose exec backend pytest
+```
+
+The frontend service joins this compose stack when the frontend is scaffolded.
 
 ## License
 
